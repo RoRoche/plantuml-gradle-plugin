@@ -21,7 +21,7 @@ script:
   #- ./gradlew sonarqube -i -Dsonar.projectKey=RoRoche_plantuml-gradle-plugin -Dsonar.organization=roroche -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash) -v
 
 deploy:
   cleanup: false

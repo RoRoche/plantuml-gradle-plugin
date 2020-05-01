@@ -24,5 +24,5 @@ TODO
 
 Built on top of awesome libraries:
 
-* https://github.com/jboz/plantuml-builder[https://github.com/jboz/plantuml-builder]
-* https://github.com/ronmamo/reflections[reflections]
+* https://github.com/jboz/plantuml-builder
+* https://github.com/ronmamo/reflections

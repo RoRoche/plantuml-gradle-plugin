@@ -8,6 +8,8 @@ image::https://www.elegantobjects.org/badge.svg[Elegant Objects]
 
 image::https://www.elegantobjects.org/intellij-idea.svg[intellij-idea]
 
+image::https://snyk.io/test/github/RoRoche/plantuml-gradle-plugin/badge.svg[Known Vulnerabilities]
+
 == Dependency
 
 TODO

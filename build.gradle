@@ -5,6 +5,9 @@ plugins {
     id 'java-gradle-plugin'
     id "com.gradle.plugin-publish" version "0.11.0"
     id "maven-publish"
+    id "jacoco"
+    id "org.sonarqube" version "2.8"
+//    id "com.github.roroche.plantuml" version "0.0.1-SNAPSHOT"
 }
 
 group 'com.github.roroche'
@@ -41,6 +44,16 @@ compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 
+jacocoTestReport {
+    executionData(tasks.withType(Test))
+    reports {
+        xml.enabled = true
+    }
+    dependsOn(check)
+}
+
+tasks.sonarqube.dependsOn(check, jacocoTestReport)
+
 gradlePlugin {
     plugins {
         plantUmlPlugin {
@@ -55,7 +68,7 @@ publishing {
         pluginPublication (MavenPublication) {
             from components.java
             groupId project.group
-            artifactId "com.github.roroche.plantuml"
+            artifactId "plantuml-gradle-plugin"
             version project.version
         }
     }
@@ -63,7 +76,7 @@ publishing {
 
 pluginBundle {
     website = 'https://github.com/RoRoche/plantuml-gradle-plugin'
-    vcsUrl = 'scm:git@github.com:RoRoche/plantuml-gradle-plugin.git'
+    vcsUrl = 'https://github.com/RoRoche/plantuml-gradle-plugin.git'
     tags = [
             'plantuml',
             'plantuml-diagrams',

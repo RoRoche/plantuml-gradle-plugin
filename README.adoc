@@ -1,0 +1,28 @@
+= plantuml-gradle-plugin
+
+Gradle plugin to build PlantUML diagrams from code (for living and up-to-date documentation).
+
+== Badges
+
+image::https://www.elegantobjects.org/badge.svg[Elegant Objects]
+
+iimage::https://www.elegantobjects.org/intellij-idea.svg[intellij-idea]
+
+== Dependency
+
+TODO
+
+== Configuration
+
+TODO
+
+== Usage
+
+TODO
+
+== Credits
+
+Built on top of awesome libraries:
+
+* https://github.com/jboz/plantuml-builder[https://github.com/jboz/plantuml-builder]
+* https://github.com/ronmamo/reflections[reflections]

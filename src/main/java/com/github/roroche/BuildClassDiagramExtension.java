@@ -12,7 +12,7 @@ public class BuildClassDiagramExtension {
         return packageName;
     }
 
-    public void setPackageName(String packageName) {
+    public void setPackageName(final String packageName) {
         this.packageName = packageName;
     }
 
@@ -20,7 +20,7 @@ public class BuildClassDiagramExtension {
         return outputFile;
     }
 
-    public void setOutputFile(File outputFile) {
+    public void setOutputFile(final File outputFile) {
         this.outputFile = outputFile;
     }
 
@@ -28,7 +28,7 @@ public class BuildClassDiagramExtension {
         return ignoredClasses;
     }
 
-    public void setIgnoredClasses(List<String> ignoredClasses) {
+    public void setIgnoredClasses(final List<String> ignoredClasses) {
         this.ignoredClasses = ignoredClasses;
     }
 }

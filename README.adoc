@@ -10,7 +10,26 @@ image::https://www.elegantobjects.org/intellij-idea.svg[intellij-idea]
 
 image:https://travis-ci.org/RoRoche/plantuml-gradle-plugin.svg?branch=master["Build Status", link="https://travis-ci.org/RoRoche/plantuml-gradle-plugin"]
 
-image::https://sonarcloud.io/api/project_badges/measure?project=RoRoche_plantuml-gradle-plugin&metric=alert_status[Quality gate]
+https://codecov.io/gh/RoRoche/plantuml-gradle-plugin[image:https://codecov.io/gh/RoRoche/plantuml-gradle-plugin/branch/master/graph/badge.svg[codecov]]
+
+https://sonarcloud.io/dashboard?id=RoRoche_plantuml-gradle-plugin[image:https://sonarcloud.io/api/project_badges/measure?project=RoRoche_plantuml-gradle-plugin&metric=alert_status[Quality
+Gate Status]]
+https://sonarcloud.io/dashboard?id=RoRoche_plantuml-gradle-plugin[image:https://sonarcloud.io/api/project_badges/measure?project=RoRoche_plantuml-gradle-plugin&metric=bugs[Bugs]]
+https://sonarcloud.io/dashboard?id=RoRoche_plantuml-gradle-plugin[image:https://sonarcloud.io/api/project_badges/measure?project=RoRoche_plantuml-gradle-plugin&metric=code_smells[Code
+Smells]]
+https://sonarcloud.io/dashboard?id=RoRoche_plantuml-gradle-plugin[image:https://sonarcloud.io/api/project_badges/measure?project=RoRoche_plantuml-gradle-plugin&metric=duplicated_lines_density[Duplicated
+Lines (%)]]
+https://sonarcloud.io/dashboard?id=RoRoche_plantuml-gradle-plugin[image:https://sonarcloud.io/api/project_badges/measure?project=RoRoche_plantuml-gradle-plugin&metric=ncloc[Lines
+of Code]]
+https://sonarcloud.io/dashboard?id=RoRoche_plantuml-gradle-plugin[image:https://sonarcloud.io/api/project_badges/measure?project=RoRoche_plantuml-gradle-plugin&metric=sqale_rating[Maintainability
+Rating]]
+https://sonarcloud.io/dashboard?id=RoRoche_plantuml-gradle-plugin[image:https://sonarcloud.io/api/project_badges/measure?project=RoRoche_plantuml-gradle-plugin&metric=reliability_rating[Reliability
+Rating]]
+https://sonarcloud.io/dashboard?id=RoRoche_plantuml-gradle-plugin[image:https://sonarcloud.io/api/project_badges/measure?project=RoRoche_plantuml-gradle-plugin&metric=security_rating[Security
+Rating]]
+https://sonarcloud.io/dashboard?id=RoRoche_plantuml-gradle-plugin[image:https://sonarcloud.io/api/project_badges/measure?project=RoRoche_plantuml-gradle-plugin&metric=sqale_index[Technical
+Debt]]
+https://sonarcloud.io/dashboard?id=RoRoche_plantuml-gradle-plugin[image:https://sonarcloud.io/api/project_badges/measure?project=RoRoche_plantuml-gradle-plugin&metric=vulnerabilities[Vulnerabilities]]
 
 image::https://snyk.io/test/github/RoRoche/plantuml-gradle-plugin/badge.svg[Known Vulnerabilities]
 

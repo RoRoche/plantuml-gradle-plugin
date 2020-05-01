@@ -8,6 +8,8 @@ image::https://www.elegantobjects.org/badge.svg[Elegant Objects]
 
 image::https://www.elegantobjects.org/intellij-idea.svg[intellij-idea]
 
+image::https://sonarcloud.io/api/project_badges/measure?project=RoRoche_plantuml-gradle-plugin&metric=alert_status[Quality gate]
+
 image::https://snyk.io/test/github/RoRoche/plantuml-gradle-plugin/badge.svg[Known Vulnerabilities]
 
 == Dependency

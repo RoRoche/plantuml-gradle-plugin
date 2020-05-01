@@ -2,6 +2,9 @@ plugins {
     id 'groovy'
     id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.3.72'
+    id 'java-gradle-plugin'
+    id "com.gradle.plugin-publish" version "0.11.0"
+    id "maven-publish"
 }
 
 group 'com.github.roroche'
@@ -9,10 +12,11 @@ version '0.0.1-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.3.11'
+    implementation 'org.codehaus.groovy:groovy-all:3.0.3'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation gradleApi()
     implementation localGroovy()
@@ -35,4 +39,43 @@ compileKotlin {
 
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+gradlePlugin {
+    plugins {
+        plantUmlPlugin {
+            id = 'com.github.roroche.plantuml'
+            implementationClass = 'com.github.roroche.PlantUmlPlugin'
+        }
+    }
+}
+
+publishing {
+    publications {
+        pluginPublication (MavenPublication) {
+            from components.java
+            groupId project.group
+            artifactId "com.github.roroche.plantuml"
+            version project.version
+        }
+    }
+}
+
+pluginBundle {
+    website = 'https://github.com/RoRoche/plantuml-gradle-plugin'
+    vcsUrl = 'scm:git@github.com:RoRoche/plantuml-gradle-plugin.git'
+    tags = [
+            'plantuml',
+            'plantuml-diagrams',
+            'plantuml-generator',
+            'living-documentation'
+    ]
+
+    plugins {
+        plantUmlPlugin {
+            id = 'com.github.roroche.plantuml'
+            displayName = 'PlantUML plugin'
+            description = 'Gradle plugin to build PlantUML diagrams from code (for living and up-to-date documentation)'
+        }
+    }
 }

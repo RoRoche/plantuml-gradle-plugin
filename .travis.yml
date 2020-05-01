@@ -18,7 +18,12 @@ script:
   - ./gradlew clean
   - ./gradlew build
   - ./gradlew check
+  - ./gradlew sonarqube -i -Dsonar.projectKey=RoRoche_plantuml-gradle-plugin -Dsonar.organization=roroche -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
 
 deploy:
+  skip_cleanup: true
+    on:
+      tags: true
+      condition: "$TRAVIS_SECURE_ENV_VARS"
   provider: script
   script: ./gradlew publishPlugins -Dgradle.publish.key="${GRADLE_PUBLISH_KEY}" -Dgradle.publish.secret="${GRADLE_PUBLISH_SECRET}"

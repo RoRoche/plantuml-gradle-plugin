@@ -18,6 +18,7 @@ script:
   - ./gradlew clean
   - ./gradlew build
   - ./gradlew check
+  - ./gradlew jacocoTestReport
   #- ./gradlew sonarqube -i -Dsonar.projectKey=RoRoche_plantuml-gradle-plugin -Dsonar.organization=roroche -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
 
 after_success:

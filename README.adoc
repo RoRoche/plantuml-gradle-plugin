@@ -14,6 +14,8 @@ image::https://sonarcloud.io/api/project_badges/measure?project=RoRoche_plantuml
 
 image::https://snyk.io/test/github/RoRoche/plantuml-gradle-plugin/badge.svg[Known Vulnerabilities]
 
+https://hitsofcode.com/view/github/RoRoche/plantuml-gradle-plugin[image:https://hitsofcode.com/github/RoRoche/plantuml-gradle-plugin[Hits-of-Code]]
+
 == Dependency
 
 TODO

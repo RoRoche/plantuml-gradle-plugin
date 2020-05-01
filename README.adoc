@@ -6,7 +6,7 @@ Gradle plugin to build PlantUML diagrams from code (for living and up-to-date do
 
 image::https://www.elegantobjects.org/badge.svg[Elegant Objects]
 
-iimage::https://www.elegantobjects.org/intellij-idea.svg[intellij-idea]
+image::https://www.elegantobjects.org/intellij-idea.svg[intellij-idea]
 
 == Dependency
 

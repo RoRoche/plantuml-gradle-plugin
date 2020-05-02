@@ -38,7 +38,7 @@ public class BuildClassDiagramTask extends DefaultTask implements CustomTask {
             option = "packageName",
             description = "The package where to scan classes to build the class diagram."
     )
-    public void setPackageName(String packageName) {
+    public void setPackageName(final String packageName) {
         this.packageName = packageName;
     }
 
@@ -58,7 +58,7 @@ public class BuildClassDiagramTask extends DefaultTask implements CustomTask {
             option = "ignoredClasses",
             description = "The classes to be ignored while building class diagram."
     )
-    public void setIgnoredClasses(List<String> ignoredClasses) {
+    public void setIgnoredClasses(final List<String> ignoredClasses) {
         this.ignoredClasses = ignoredClasses;
     }
 

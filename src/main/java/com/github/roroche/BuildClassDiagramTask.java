@@ -16,7 +16,7 @@ import org.gradle.api.tasks.options.Option;
 import java.io.File;
 import java.util.List;
 
-public class BuildClassDiagramTask extends DefaultTask {
+public class BuildClassDiagramTask extends DefaultTask implements CustomTask {
 
     private String packageName;
     private List<String> ignoredClasses;
@@ -69,6 +69,7 @@ public class BuildClassDiagramTask extends DefaultTask {
     }
 
     @TaskAction
+    @Override
     public void execute() {
         setGroup("documentation");
         setDescription("Build PlantUML class diagram for a given package.");

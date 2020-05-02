@@ -6,7 +6,7 @@ import com.pragmaticobjects.oo.tests.Assertion
 import org.assertj.core.api.Assertions.assertThat
 import java.io.File
 
-class FileHasContentAssertion(
+class KtFileHasContentAssertion(
     private val file: File,
     private val expectedContent: String
 ) : Assertion {

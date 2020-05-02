@@ -1,6 +1,6 @@
 package com.github.roroche.diagrams
 
-import com.github.roroche.assertions.FileHasContentAssertion
+import com.github.roroche.assertions.KtFileHasContentAssertion
 import com.github.roroche.classes.ClsInPackage
 import com.pragmaticobjects.oo.tests.TestCase
 import com.pragmaticobjects.oo.tests.junit5.TestsSuite
@@ -10,7 +10,7 @@ import java.nio.file.Path
 class PrintDiagramTest : TestsSuite(
     TestCase(
         "assert Diagram content is printed to file",
-        FileHasContentAssertion(
+        KtFileHasContentAssertion(
             diagram = ClassDiagram(
                 classes = ClsInPackage(
                     packageName = "com.github.roroche.examples"

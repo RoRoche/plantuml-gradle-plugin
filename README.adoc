@@ -59,4 +59,7 @@ Built on top of awesome libraries:
 * https://github.com/jboz/plantuml-builder
 * https://github.com/ronmamo/reflections
 
-include::https://raw.githubusercontent.com/RoRoche/plantuml-gradle-plugin/master/assets/icon_credits.adoc[]
+== Icon credits
+
+Icons made by https://www.flaticon.com/authors/eucalyp[Eucalyp] from
+https://www.flaticon.com/[www.flaticon.com]

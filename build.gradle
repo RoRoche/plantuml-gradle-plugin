@@ -52,6 +52,14 @@ jacocoTestReport {
     dependsOn(check)
 }
 
+sonarqube {
+    properties {
+        property "sonar.projectKey", "RoRoche_plantuml-gradle-plugin"
+        property "sonar.organization", "roroche"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
+}
+
 tasks.sonarqube.dependsOn(check, jacocoTestReport)
 
 gradlePlugin {

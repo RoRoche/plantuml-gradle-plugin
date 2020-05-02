@@ -19,7 +19,7 @@ script:
   - ./gradlew build
   - ./gradlew check
   - ./gradlew jacocoTestReport
-  #- ./gradlew sonarqube -i -Dsonar.projectKey=RoRoche_plantuml-gradle-plugin -Dsonar.organization=roroche -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
+  - ./gradlew sonarqube -Dsonar.login=$SONAR_TOKEN
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

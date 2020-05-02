@@ -2,15 +2,14 @@ package com.github.roroche.diagrams
 
 import com.github.roroche.assertions.FileHasContentAssertion
 import com.github.roroche.classes.ClsInPackage
-import org.junit.jupiter.api.Test
+import com.pragmaticobjects.oo.tests.TestCase
+import com.pragmaticobjects.oo.tests.junit5.TestsSuite
 import org.junit.jupiter.api.io.TempDir
-import java.io.IOException
 import java.nio.file.Path
 
-class WriteDiagramTest {
-    @Test
-    @Throws(IOException::class)
-    fun testWriteContentToFile() {
+class PrintDiagramTest : TestsSuite(
+    TestCase(
+        "assert Diagram content is printed to file",
         FileHasContentAssertion(
             diagram = ClassDiagram(
                 classes = ClsInPackage(
@@ -39,9 +38,9 @@ class WriteDiagramTest {
 
                 @enduml
             """.trimIndent()
-        ).check()
-    }
-
+        )
+    )
+) {
     companion object TmpDir {
         @TempDir
         lateinit var tmpDirPath: Path

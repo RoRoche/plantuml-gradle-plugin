@@ -7,10 +7,20 @@ import org.reflections.util.ClasspathHelper
 import org.reflections.util.ConfigurationBuilder
 import java.util.concurrent.Executors
 
+/**
+ * Utility class to find [Classes] in a given package.
+ *
+ * @property reflections Utility to find classes in pckage.
+ */
 class ClsInPackage(
     private val reflections: Reflections
 ) : Classes {
 
+    /**
+     * Secondary constructor.
+     *
+     * @param packageName The name of the package to scan.
+     */
     constructor(packageName: String) : this(
         Reflections(
             ConfigurationBuilder()
@@ -25,6 +35,9 @@ class ClsInPackage(
         )
     )
 
+    /**
+     * @return Classes to be used for diagram generation.
+     */
     override fun list(): List<Class<out Any>> {
         return reflections.getSubTypesOf(
             Any::class.java

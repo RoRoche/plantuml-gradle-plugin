@@ -14,17 +14,26 @@ import org.gradle.api.tasks.options.Option;
 import java.io.File;
 import java.util.List;
 
+/**
+ * Task to build PlantUML class diagram.
+ */
 public class BuildClassDiagramTask extends DefaultTask implements CustomTask {
 
     private String packageName;
     private List<String> ignoredClasses;
     private File outputFile;
 
+    /**
+     * @return The name of the package to scan.
+     */
     @Input
     public String getPackageName() {
         return packageName;
     }
 
+    /**
+     * @param packageName The name of the package to scan.
+     */
     @Option(
             option = "packageName",
             description = "The package where to scan classes to build the class diagram."
@@ -33,12 +42,18 @@ public class BuildClassDiagramTask extends DefaultTask implements CustomTask {
         this.packageName = packageName;
     }
 
+    /**
+     * @return The classes to ignore while generating diagram.
+     */
     @Optional
     @Input
     public List<String> getIgnoredClasses() {
         return ignoredClasses;
     }
 
+    /**
+     * @param ignoredClasses The classes to ignore while generating diagram.
+     */
     @Option(
             option = "ignoredClasses",
             description = "The classes to be ignored while building class diagram."
@@ -47,11 +62,17 @@ public class BuildClassDiagramTask extends DefaultTask implements CustomTask {
         this.ignoredClasses = ignoredClasses;
     }
 
+    /**
+     * @return The file where to print diagram.
+     */
     @OutputFile
     public File getOutputFile() {
         return outputFile;
     }
 
+    /**
+     * @param outputFile The file where to print diagram.
+     */
     @Option(
             option = "ignoredClasses",
             description = "The classes to be ignored while building class diagram."
@@ -60,12 +81,20 @@ public class BuildClassDiagramTask extends DefaultTask implements CustomTask {
         this.outputFile = new File(outputFile);
     }
 
+    /**
+     * Populate params from extension to task.
+     *
+     * @param params The params to populate.
+     */
     public void populateParam(final BuildClassDiagramExtension params) {
         this.packageName = params.getPackageName();
         this.outputFile = params.getOutputFile();
         this.ignoredClasses = params.getIgnoredClasses();
     }
 
+    /**
+     * Execute that action.
+     */
     @TaskAction
     @Override
     public void execute() {

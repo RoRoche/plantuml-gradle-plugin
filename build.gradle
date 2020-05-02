@@ -30,6 +30,7 @@ dependencies {
     testImplementation 'com.pragmaticobjects.oo.tests:tests-junit5:0.0.1'
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.2")
     testImplementation gradleTestKit()
+    testImplementation 'org.assertj:assertj-core:3.15.0'
 }
 
 test {

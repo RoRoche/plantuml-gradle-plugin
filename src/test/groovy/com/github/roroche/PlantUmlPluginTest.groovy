@@ -2,23 +2,25 @@ package com.github.roroche
 
 import com.github.roroche.assertions.FindTaskAssertion
 import com.github.roroche.assertions.ProjectWithPluginAssertion
-import org.gradle.api.Project
-import org.gradle.testfixtures.ProjectBuilder
-import org.junit.jupiter.api.Test
+import com.pragmaticobjects.oo.tests.TestCase
+import com.pragmaticobjects.oo.tests.junit5.TestsSuite
 
-class PlantUmlPluginTest {
-    @Test
-    void testPlantUmlPlugin() {
-        final Project project = ProjectBuilder.builder().build()
-        new ProjectWithPluginAssertion(
-                project,
-                "com.github.roroche.plantuml",
-                List.of(
-                        new FindTaskAssertion(
-                                project,
-                                "buildClassDiagram"
+class PlantUmlPluginTest extends TestsSuite {
+    PlantUmlPluginTest() {
+        super(
+                new TestCase(
+                        "test applying PlantUmlPlugin declares buildClassDiagram task",
+                        new ProjectWithPluginAssertion(
+                                BuiltProject.instance.toProject(),
+                                "com.github.roroche.plantuml",
+                                List.of(
+                                        new FindTaskAssertion(
+                                                BuiltProject.instance.toProject(),
+                                                "buildClassDiagram"
+                                        )
+                                )
                         )
                 )
-        ).check()
+        )
     }
 }

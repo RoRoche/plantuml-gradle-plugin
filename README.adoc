@@ -1,5 +1,7 @@
 = plantuml-gradle-plugin
 
+image::assets/icon.png[Icon]
+
 Gradle plugin to build PlantUML diagrams from code (for living and up-to-date documentation).
 
 == Badges
@@ -56,3 +58,5 @@ Built on top of awesome libraries:
 
 * https://github.com/jboz/plantuml-builder
 * https://github.com/ronmamo/reflections
+
+include::assets/icon_credits.adoc[]

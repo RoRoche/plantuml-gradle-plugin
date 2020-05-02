@@ -7,6 +7,9 @@ import com.pragmaticobjects.oo.tests.junit5.TestsSuite
 import org.junit.jupiter.api.io.TempDir
 import java.nio.file.Path
 
+/**
+ * [TestsSuite] to perform checks about printing [ClassDiagram].
+ */
 class PrintDiagramTest : TestsSuite(
     TestCase(
         "assert Diagram content is printed to file",

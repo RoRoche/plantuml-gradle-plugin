@@ -6,6 +6,9 @@ import com.github.roroche.examples.Driver
 import com.pragmaticobjects.oo.tests.TestCase
 import com.pragmaticobjects.oo.tests.junit5.TestsSuite
 
+/**
+ * [TestsSuite] to perform checks about [ClsFiltered].
+ */
 class ClsFilteredTest : TestsSuite(
     TestCase(
         "classes in package filtered contains less classes",

@@ -7,6 +7,9 @@ import com.github.roroche.classes.ClsWithNames
 import com.pragmaticobjects.oo.tests.TestCase
 import com.pragmaticobjects.oo.tests.junit5.TestsSuite
 
+/**
+ * [TestsSuite] to perform checks about [ClassDiagram].
+ */
 class ClassDiagramTest : TestsSuite(
     TestCase(
         "assert ClassDiagram for package com.github.roroche.examples build diagram properly",

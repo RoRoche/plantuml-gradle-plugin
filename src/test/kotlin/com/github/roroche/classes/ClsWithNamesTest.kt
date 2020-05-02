@@ -8,6 +8,9 @@ import com.github.roroche.examples.Vehicle
 import com.pragmaticobjects.oo.tests.TestCase
 import com.pragmaticobjects.oo.tests.junit5.TestsSuite
 
+/**
+ * [TestsSuite] to perform checks about [ClsWithNames].
+ */
 class ClsWithNamesTest : TestsSuite(
     TestCase(
         "classes with names contains concrete classes",

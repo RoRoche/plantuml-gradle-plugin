@@ -5,6 +5,9 @@ import com.github.roroche.assertions.ProjectWithPluginAssertion
 import com.pragmaticobjects.oo.tests.TestCase
 import com.pragmaticobjects.oo.tests.junit5.TestsSuite
 
+/**
+ * TestsSuite to perform checks about PlantUmlPlugin.
+ */
 class PlantUmlPluginTest extends TestsSuite {
     PlantUmlPluginTest() {
         super(

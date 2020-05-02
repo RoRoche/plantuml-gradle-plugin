@@ -7,6 +7,9 @@ import com.github.roroche.examples.Vehicle
 import com.pragmaticobjects.oo.tests.TestCase
 import com.pragmaticobjects.oo.tests.junit5.TestsSuite
 
+/**
+ * [TestsSuite] to perform checks about [ClsInPackage].
+ */
 class ClsInPackageTest : TestsSuite(
     TestCase(
         "classes in package contains concrete classes",

@@ -10,6 +10,9 @@ import org.junit.jupiter.api.io.TempDir
 
 import java.nio.file.Path
 
+/**
+ * TestsSuite that performs checks about BuildClassDiagramTask.
+ */
 class BuildClassDiagramTaskTest extends TestsSuite {
     BuildClassDiagramTaskTest() {
         super(

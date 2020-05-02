@@ -3,6 +3,12 @@ package com.github.roroche.diagrams
 import org.gradle.api.logging.Logger
 import java.io.File
 
+/**
+ * Utility class to add logging concerns.
+ *
+ * @param origin The delegate [Diagram].
+ * @property logger The [Logger] to use for debug concerns.
+ */
 class DiagramWithLog(
     origin: Diagram,
     private val logger: Logger

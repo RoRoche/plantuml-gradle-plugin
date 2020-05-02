@@ -1,11 +1,9 @@
 package com.github.roroche;
 
-import com.github.roroche.classes.Classes;
-import com.github.roroche.classes.ClsFiltered;
-import com.github.roroche.classes.ClsInPackage;
-import com.github.roroche.classes.ClsWithNames;
+import com.github.roroche.classes.*;
 import com.github.roroche.diagrams.ClassDiagram;
 import com.github.roroche.diagrams.Diagram;
+import com.github.roroche.diagrams.DiagramWithLog;
 import org.gradle.api.DefaultTask;
 import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.Optional;
@@ -73,11 +71,26 @@ public class BuildClassDiagramTask extends DefaultTask implements CustomTask {
     public void execute() {
         setGroup("documentation");
         setDescription("Build PlantUML class diagram for a given package.");
-        final Classes classes = new ClsFiltered(
-                new ClsInPackage(packageName),
-                new ClsWithNames(ignoredClasses)
+        getLogger().debug(
+                String.format("Package to scan: %s", packageName)
         );
-        final Diagram diagram = new ClassDiagram(classes);
+        getLogger().debug(
+                String.format("Output file: %s", outputFile)
+        );
+        getLogger().debug(
+                String.format("Classes to ignore: %s", ignoredClasses)
+        );
+        final Classes classes = new ClsWithLog(
+                new ClsFiltered(
+                        new ClsInPackage(packageName),
+                        new ClsWithNames(ignoredClasses)
+                ),
+                getLogger()
+        );
+        final Diagram diagram = new DiagramWithLog(
+                new ClassDiagram(classes),
+                getLogger()
+        );
         diagram.print(outputFile);
     }
 }

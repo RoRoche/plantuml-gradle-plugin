@@ -78,7 +78,7 @@ gradlePlugin {
 
 publishing {
     publications {
-        pluginPublication (MavenPublication) {
+        pluginPublication(MavenPublication) {
             from components.java
             groupId project.group
             artifactId "plantuml-gradle-plugin"

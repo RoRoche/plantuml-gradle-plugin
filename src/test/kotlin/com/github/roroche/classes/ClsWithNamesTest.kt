@@ -27,7 +27,7 @@ class ClsWithNamesTest : TestsSuite(
         )
     ),
     TestCase(
-        "class with empty names returns empty list",
+        "classes with empty names returns empty list",
         ClsIsEmptyAssertion(
             classes = ClsWithNames(
                 names = emptyList()

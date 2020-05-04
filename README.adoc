@@ -116,6 +116,98 @@ Simply run the `buildClassDiagram` task, such as:
 ./gradlew buildClassDiagram
 ----
 
+== Output examples
+
+[source,plantuml]
+----
+include::diagrams/class_diagram.plantuml[]
+----
+
+[plantuml,diagram-classes,png]
+....
+@startuml
+
+class "BuildClassDiagramTask" {
+  extension : ClassDiagramExtension
+  metaClass : MetaClass
+  execute()
+  getProperty(String) : Object
+  invokeMethod(String, Object) : Object
+}
+
+class "ClassDiagram"
+
+class "ClassDiagramExtension" {
+  packageName : String
+  outputFile : File
+  ignoredClasses : List<String>
+  metaClass : MetaClass
+  getProperty(String) : Object
+  invokeMethod(String, Object) : Object
+  setProperty(String, Object)
+}
+
+interface "Classes" {
+  list() : List<Class<?>>
+}
+
+class "ClsFiltered" {
+  ignored : Classes
+  list() : List<Class<?>>
+}
+
+class "ClsInPackage" {
+  packageName : String
+  packageUrls : Collection<URL>
+  reflections : Reflections
+  list() : List<Class<?>>
+}
+
+class "ClsWithLog" {
+  logger : Logger
+  list() : List<Class<?>>
+}
+
+class "ClsWithNames" {
+  names : List<String>
+  list() : List<Class<?>>
+}
+
+interface "CustomTask" {
+  execute()
+}
+
+interface "Diagram" {
+  content() : String
+  print(File)
+}
+
+class "DiagramWithLog" {
+  logger : Logger
+  print(File)
+}
+
+class "PlantUmlPlugin" {
+  metaClass : MetaClass
+  apply(Project)
+  apply(Object)
+  getProperty(String) : Object
+  invokeMethod(String, Object) : Object
+  setProperty(String, Object)
+}
+
+"BuildClassDiagramTask" --> "ClassDiagramExtension" : extension
+"Classes" <-> "ClsFiltered" : /ignored
+"Classes" <|-- "ClsInPackage"
+"Classes" <|-- "ClsWithLog"
+"Classes" <|-- "ClsWithNames"
+"CustomTask" <|-- "BuildClassDiagramTask"
+"Diagram" <|-- "ClassDiagram"
+"Diagram" <|-- "DiagramWithLog"
+
+@enduml
+....
+
 == Credits
 
 Built on top of awesome libraries:

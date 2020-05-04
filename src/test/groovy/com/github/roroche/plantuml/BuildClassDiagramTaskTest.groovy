@@ -1,9 +1,11 @@
 package com.github.roroche.plantuml
 
 import com.github.roroche.plantuml.assertions.CreateTaskAssertion
-import com.github.roroche.plantuml.assertions.ExecuteBuildClassDiagramTaskAssertion
+import com.github.roroche.plantuml.assertions.CreatedTask
+import com.github.roroche.plantuml.assertions.ExecuteTaskAssertion
 import com.github.roroche.plantuml.assertions.GrvFileHasContentAssertion
 import com.github.roroche.plantuml.tasks.BuildClassDiagramTask
+import com.github.roroche.plantuml.tasks.ClassDiagramExtension
 import com.pragmaticobjects.oo.tests.TestCase
 import com.pragmaticobjects.oo.tests.junit5.TestsSuite
 import org.gradle.testfixtures.ProjectBuilder
@@ -20,16 +22,32 @@ class BuildClassDiagramTaskTest extends TestsSuite {
                 new TestCase(
                         "test buildClassDiagramTask",
                         new CreateTaskAssertion(
-                                ProjectBuilder.builder().build(),
-                                "buildClassDiagramTask",
+                                new CreatedTask(
+                                        ProjectBuilder.builder().build(),
+                                        "buildClassDiagramTask",
+                                        BuildClassDiagramTask.class,
+                                        new ClassDiagramExtension(
+                                                "com.github.roroche.examples",
+                                                tmpDirPath.resolve("output.txt").toFile(),
+                                                List.of()
+                                        )
+                                ),
                                 BuildClassDiagramTask.class
                         )
                 ),
                 new TestCase(
                         "test buildClassDiagramTask print diagram to file",
-                        new ExecuteBuildClassDiagramTaskAssertion(
-                                ProjectBuilder.builder().build(),
-                                tmpDirPath.resolve("output.txt").toFile(),
+                        new ExecuteTaskAssertion(
+                                new CreatedTask(
+                                        ProjectBuilder.builder().build(),
+                                        "buildClassDiagramTask",
+                                        BuildClassDiagramTask.class,
+                                        new ClassDiagramExtension(
+                                                "com.github.roroche.examples",
+                                                tmpDirPath.resolve("output.txt").toFile(),
+                                                List.of()
+                                        )
+                                ),
                                 new GrvFileHasContentAssertion(
                                         tmpDirPath.resolve("output.txt").toFile(),
                                         "@startuml\n" +

@@ -23,59 +23,6 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
         this.extension = extension
     }
 
-//    //region Getters
-//    @Input
-//    String getPackageName() {
-//        return packageName
-//    }
-//
-//    @Optional
-//    @Input
-//    List<String> getIgnoredClasses() {
-//        return ignoredClasses
-//    }
-//
-//    @OutputFile
-//    File getOutputFile() {
-//        return outputFile
-//    }
-//    //endregion
-//
-//    //region Setters
-//    /**
-//     * @param packageName The name of the package to scan.
-//     */
-//    @Option(
-//            option = "packageName",
-//            description = "The package where to scan classes to build the class diagram."
-//    )
-//    void setPackageName(final String packageName) {
-//        this.packageName = packageName
-//    }
-//
-//    /**
-//     * @param ignoredClasses The classes to ignore while generating diagram.
-//     */
-//    @Option(
-//            option = "ignoredClasses",
-//            description = "[Optional] The classes to be ignored while building class diagram."
-//    )
-//    void setIgnoredClasses(final List<String> ignoredClasses) {
-//        this.ignoredClasses = ignoredClasses
-//    }
-//
-//    /**
-//     * @param outputFile The file where to print diagram.
-//     */
-//    @Option(
-//            option = "outputFile",
-//            description = "The file where to print the built diagram."
-//    )
-//    void setOutputFile(final String outputFile) {
-//        this.outputFile = new File(outputFile)
-//    }
-//    //endregion
-
     /**
      * Execute that action.
      */

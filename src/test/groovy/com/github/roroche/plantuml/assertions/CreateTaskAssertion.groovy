@@ -1,7 +1,6 @@
 package com.github.roroche.plantuml.assertions
 
 import com.pragmaticobjects.oo.tests.Assertion
-import org.gradle.api.Project
 import org.gradle.api.Task
 
 import static org.junit.jupiter.api.Assertions.assertNotNull
@@ -9,26 +8,20 @@ import static org.junit.jupiter.api.Assertions.assertNotNull
 /**
  * Assertion that checks a task is properly created.
  */
-class CreateTaskAssertion implements Assertion {
+class CreateTaskAssertion<T extends Task> implements Assertion {
 
-    private final Project project
-    private final String taskName
-    private final Class<? extends Task> taskClass
+    private final CreatedTask createdTask
+    private final Class<T> taskClass
 
     /**
-     * Primary constructor.
-     *
-     * @param project The Project to be configured.
-     * @param taskName The name of the task to create.
+     * @param createdTask The created task.
      * @param taskClass The Class of the task to create.
      */
     CreateTaskAssertion(
-            final Project project,
-            final String taskName,
-            final Class<? extends Task> taskClass
+            final CreatedTask createdTask,
+            final Class<T> taskClass
     ) {
-        this.project = project
-        this.taskName = taskName
+        this.createdTask = createdTask
         this.taskClass = taskClass
     }
 
@@ -38,10 +31,7 @@ class CreateTaskAssertion implements Assertion {
      */
     @Override
     void check() throws Exception {
-        final Task task = project.task(
-                taskName,
-                type: taskClass
-        )
+        final Task task = createdTask.createdTask()
         assertNotNull(task)
         assertNotNull(taskClass.isInstance(task))
     }

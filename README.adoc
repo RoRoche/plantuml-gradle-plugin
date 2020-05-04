@@ -71,12 +71,9 @@ image:https://img.shields.io/github/release-date/RoRoche/plantuml-gradle-plugin[
 === Other
 
 image::https://www.elegantobjects.org/badge.svg[Elegant Objects]
-
 image::https://www.elegantobjects.org/intellij-idea.svg[intellij-idea]
-
 https://www.rultor.com/p/yegor256/rultor[image:https://www.rultor.com/b/yegor256/rultor[DevOps
 By Rultor.com]]
-
 https://hitsofcode.com/view/github/RoRoche/plantuml-gradle-plugin[image:https://hitsofcode.com/github/RoRoche/plantuml-gradle-plugin[Hits-of-Code]]
 
 == Dependency

@@ -34,8 +34,12 @@ class ClsFilteredTest : TestsSuite(
         "empty origin and filtered classes returns empty list",
         ClsIsEmptyAssertion(
             classes = ClsFiltered(
-                origin = Classes.Simple(emptyList()),
-                ignored = Classes.Simple(listOf(ClsFilteredTest::class.java))
+                origin = Classes.Simple(
+                    emptyList()
+                ),
+                ignored = Classes.Simple(
+                    listOf(ClsFilteredTest::class.java)
+                )
             )
         )
     ),
@@ -43,8 +47,12 @@ class ClsFilteredTest : TestsSuite(
         "empty origin and empty filtered classes returns empty list",
         ClsIsEmptyAssertion(
             classes = ClsFiltered(
-                origin = Classes.Simple(emptyList()),
-                ignored = Classes.Simple(emptyList())
+                origin = Classes.Simple(
+                    emptyList()
+                ),
+                ignored = Classes.Simple(
+                    emptyList()
+                )
             )
         )
     ),
@@ -52,8 +60,12 @@ class ClsFilteredTest : TestsSuite(
         "origin and empty filtered classes returns empty list",
         ClsIsEmptyAssertion(
             classes = ClsFiltered(
-                origin = Classes.Simple(listOf(ClsFilteredTest::class.java)),
-                ignored = Classes.Simple(emptyList())
+                origin = Classes.Simple(
+                    listOf(ClsFilteredTest::class.java)
+                ),
+                ignored = Classes.Simple(
+                    emptyList()
+                )
             )
         )
     )

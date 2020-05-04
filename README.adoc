@@ -93,8 +93,9 @@ pluginManagement {
 ----
 classDiagram { // <1>
     packageName = "com.github.roroche" // <2>
-    outputFile = new File("${projectDir}/diagrams/class_diagram.plantuml") // <3>
-    ignoredClasses = [ // <4>
+    outputFile = project.file('diagrams/class_diagram.plantuml') // <3>
+    // outputFile = new File("${projectDir}/diagrams/class_diagram.plantuml") // <4>
+    ignoredClasses = [ // <5>
             "com.github.roroche.plantuml.diagrams.Diagram\$Simple",
             "com.github.roroche.plantuml.diagrams.Diagram\$Wrap",
             "com.github.roroche.plantuml.classes.Classes\$Simple",
@@ -105,7 +106,8 @@ classDiagram { // <1>
 <1> The name of the extension.
 <2> The name of the package to scan.
 <3> The file where to print the class diagram.
-<4> The classes to be ignored while building the class diagram (an array of strings).
+<4> Equivalent declaration to use explicit variable `${projectDir}`.
+<5> The classes to be ignored while building the class diagram (an array of strings).
 
 == Usage
 
@@ -209,6 +211,39 @@ class "PlantUmlPlugin" {
 
 @enduml
 ....
+
+image::diagrams/classes.svg[Class diagram]
+
+== Opportunity
+
+It's possible to associate this plugin with this pretty good one: https://framagit.org/avaiss/plantuml-gradle-plugin
+
+Here is the example of the configuration applied for this project:
+
+.build.gradle
+----
+plugins {
+    id "org.fmiw.plantuml" version "0.1" // <1>
+}
+
+plantuml {
+    options {
+        outputDir = project.file('diagrams') // <2>
+    }
+
+    diagrams {
+        classes {
+            sourceFile = project.file('diagrams/class_diagram.plantuml') // <3>
+        }
+    }
+}
+
+generateDiagramClasses.dependsOn(buildClassDiagram) // <4>
+----
+<1> Declare the dependency.
+<2> Configure the output directory where to store SVG files.
+<3> Configure the source file to provide to the plugin.
+<4> Force the `buildClassDiagram` task to be performed before executing the `generateDiagramClasses` one.
 
 == Credits
 

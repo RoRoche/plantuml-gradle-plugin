@@ -3,7 +3,7 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-//        classpath "com.github.roroche:plantuml-gradle-plugin:0.0.1-SNAPSHOT"
+//        classpath "com.github.roroche:plantuml-gradle-plugin:0.0.13-SNAPSHOT"
     }
 }
 
@@ -16,7 +16,8 @@ plugins {
     id "maven-publish"
     id "jacoco"
     id "org.sonarqube" version "2.8"
-//    id "com.github.roroche.plantuml" version "0.0.1-SNAPSHOT"
+//    id "com.github.roroche.plantuml" version "0.0.13-SNAPSHOT"
+    id "org.fmiw.plantuml" version "0.1"
 }
 
 group 'com.github.roroche'
@@ -127,7 +128,7 @@ pluginBundle {
 
 //classDiagram {
 //    packageName = "com.github.roroche"
-//    outputFile = new File("${projectDir}/diagrams/class_diagram.plantuml")
+//    outputFile = project.file('diagrams/class_diagram.plantuml')
 //    ignoredClasses = [
 //            "com.github.roroche.plantuml.diagrams.Diagram\$Simple",
 //            "com.github.roroche.plantuml.diagrams.Diagram\$Wrap",
@@ -135,3 +136,17 @@ pluginBundle {
 //            "com.github.roroche.plantuml.classes.Classes\$Wrap"
 //    ]
 //}
+
+//plantuml {
+//    options {
+//        outputDir = project.file('diagrams')
+//    }
+//
+//    diagrams {
+//        classes {
+//            sourceFile = project.file('diagrams/class_diagram.plantuml')
+//        }
+//    }
+//}
+//
+//generateDiagramClasses.dependsOn(buildClassDiagram)

@@ -118,6 +118,8 @@ Simply run the `buildClassDiagram` task, such as:
 
 == Output examples
 
+https://github.com/RoRoche/plantuml-gradle-plugin/blob/master/diagrams/class_diagram.plantuml[Here is the output of the plugin applied to itself] (cf. previous <<Configuration>>).
+
 [source,plantuml]
 ----
 include::diagrams/class_diagram.plantuml[]

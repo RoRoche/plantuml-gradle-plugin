@@ -11,9 +11,9 @@ image::https://www.elegantobjects.org/intellij-idea.svg[intellij-idea]
 https://www.rultor.com/p/yegor256/rultor[image:https://www.rultor.com/b/yegor256/rultor[DevOps
 By Rultor.com]]
 
-image:https://travis-ci.org/RoRoche/plantuml-gradle-plugin.svg?branch=master["Build Status", link="https://travis-ci.org/RoRoche/plantuml-gradle-plugin"]
+image:https://travis-ci.org/RoRoche/plantuml-gradle-plugin.svg?branch=master["Build Status",link="https://travis-ci.org/RoRoche/plantuml-gradle-plugin"]
 
-image:https://api.codacy.com/project/badge/Grade/27af97ee5790463c82961db716b6f716["Codacy code quality", link="https://www.codacy.com/manual/romain-rochegude_2/plantuml-gradle-plugin?utm_source=github.com&utm_medium=referral&utm_content=RoRoche/plantuml-gradle-plugin&utm_campaign=Badge_Grade"]
+image:https://api.codacy.com/project/badge/Grade/27af97ee5790463c82961db716b6f716["Codacy code quality",link="https://www.codacy.com/manual/romain-rochegude_2/plantuml-gradle-plugin?utm_source=github.com&utm_medium=referral&utm_content=RoRoche/plantuml-gradle-plugin&utm_campaign=Badge_Grade"]
 
 https://codecov.io/gh/RoRoche/plantuml-gradle-plugin[image:https://codecov.io/gh/RoRoche/plantuml-gradle-plugin/branch/master/graph/badge.svg[codecov]]
 
@@ -42,15 +42,79 @@ https://hitsofcode.com/view/github/RoRoche/plantuml-gradle-plugin[image:https://
 
 == Dependency
 
-TODO
+Please refer to TODO(include URL)
+
+Using the https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block[plugins DSL]:
+
+.build.gradle
+----
+plugins {
+    id "com.github.roroche.plantuml" version "{latest_version}" // <1>
+}
+----
+<1> The plugin ID with the latest version.
+
+Using https://docs.gradle.org/current/userguide/plugins.html#sec:old_plugin_application[legacy plugin application]:
+
+.build.gradle
+----
+buildscript {
+    repositories {
+        maven {
+          url "https://plugins.gradle.org/m2/" // <1>
+        }
+    }
+    dependencies {
+        classpath "com.github.roroche:plantuml-gradle-plugin:{latest_version}" // <2>
+    }
+}
+
+apply plugin: "com.github.roroche.plantuml" // <3>
+----
+<1> Declare the repository where to look for the plugin.
+<2> Declare the dependency to the plugin.
+<3> Apply the plugin.
+
+Maybe you would have to configure the plugin management with repositories where to look for plugins:
+
+.settings.gradle
+----
+pluginManagement {
+    repositories {
+        gradlePluginPortal() // <1>
+    }
+}
+----
+<1> Include the official Gradle plugin portal.
 
 == Configuration
 
-TODO
+.build.gradle
+----
+classDiagram { // <1>
+    packageName = "com.github.roroche" // <2>
+    outputFile = new File("${projectDir}/diagrams/class_diagram.plantuml") // <3>
+    ignoredClasses = [ // <4>
+            "com.github.roroche.plantuml.diagrams.Diagram\$Simple",
+            "com.github.roroche.plantuml.diagrams.Diagram\$Wrap",
+            "com.github.roroche.plantuml.classes.Classes\$Simple",
+            "com.github.roroche.plantuml.classes.Classes\$Wrap"
+    ]
+}
+----
+<1> The name of the extension.
+<2> The name of the package to scan.
+<3> The file where to print the class diagram.
+<4> The classes to be ignored while building the class diagram (an array of strings).
 
 == Usage
 
-TODO
+Simply run the `buildClassDiagram` task, such as:
+
+[source,shell]
+----
+./gradlew buildClassDiagram
+----
 
 == Credits
 

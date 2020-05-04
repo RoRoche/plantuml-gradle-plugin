@@ -23,7 +23,7 @@ group 'com.github.roroche'
 if (project.hasProperty('newVersion')) {
     project.version = project.newVersion
 } else {
-//    project.version = '0.0.1-SNAPSHOT'
+    project.version = '0.0.1-SNAPSHOT'
 }
 
 repositories {

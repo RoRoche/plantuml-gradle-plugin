@@ -4,6 +4,8 @@ import com.github.roroche.examples.Car
 import com.github.roroche.examples.Driver
 import com.github.roroche.examples.Vehicle
 import com.github.roroche.plantuml.assertions.ClsContainsExactlyAssertion
+import com.github.roroche.plantuml.assertions.ClsThrowsAssertion
+import com.github.roroche.plantuml.classes.exceptions.InvalidPackageException
 import com.pragmaticobjects.oo.tests.TestCase
 import com.pragmaticobjects.oo.tests.junit5.TestsSuite
 
@@ -25,21 +27,23 @@ class ClsInPackageTest : TestsSuite(
         )
     ),
     TestCase(
-        "empty package returns empty list",
-        ClsContainsExactlyAssertion(
+        "empty package returns throws",
+        ClsThrowsAssertion(
             classes = ClsInPackage(
                 packageName = "com.github.roroche.examples.empty"
             ),
-            expectedClasses = emptyList()
+            expectedClass = InvalidPackageException::class.java,
+            expectedMessage = "Invalid package 'com.github.roroche.examples.empty', maybe missing or empty"
         )
     ),
     TestCase(
-        "not existing package returns empty list",
-        ClsContainsExactlyAssertion(
+        "not existing package throws",
+        ClsThrowsAssertion(
             classes = ClsInPackage(
                 packageName = "com.github.roroche.examples.missing"
             ),
-            expectedClasses = emptyList()
+            expectedClass = InvalidPackageException::class.java,
+            expectedMessage = "Invalid package 'com.github.roroche.examples.missing', maybe missing or empty"
         )
     )
 )

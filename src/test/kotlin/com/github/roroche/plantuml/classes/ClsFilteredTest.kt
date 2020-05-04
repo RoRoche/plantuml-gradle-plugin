@@ -57,8 +57,8 @@ class ClsFilteredTest : TestsSuite(
         )
     ),
     TestCase(
-        "origin and empty filtered classes returns empty list",
-        ClsIsEmptyAssertion(
+        "origin and empty filtered classes returns concrete classes",
+        ClsContainsExactlyAssertion(
             classes = ClsFiltered(
                 origin = Classes.Simple(
                     listOf(ClsFilteredTest::class.java)
@@ -66,6 +66,9 @@ class ClsFilteredTest : TestsSuite(
                 ignored = Classes.Simple(
                     emptyList()
                 )
+            ),
+            expectedClasses = listOf(
+                ClsFilteredTest::class.java
             )
         )
     )

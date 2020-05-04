@@ -6,8 +6,6 @@ Gradle plugin to build PlantUML diagrams from code (for living and up-to-date do
 
 == Badges
 
-[![Gradle Plugin Portal](https://img.shields.io/maven-metadata/v/https/plugins.gradle.org/m2/com.github.roroche/nexus-publish-plugin/maven-metadata.xml.svg?label=gradlePluginPortal)](https://plugins.gradle.org/plugin/com.github.roroche.plantuml)
-
 === Build
 
 image:https://travis-ci.org/RoRoche/plantuml-gradle-plugin.svg?branch=master["Build Status",link="https://travis-ci.org/RoRoche/plantuml-gradle-plugin"]

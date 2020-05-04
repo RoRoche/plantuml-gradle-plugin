@@ -125,10 +125,10 @@ pluginBundle {
     }
 }
 
-classDiagram {
-    packageName = "com.github.roroche"
-    outputFile = new File("${projectDir}/diagrams/class_diagram.plantuml")
-}
+//classDiagram {
+//    packageName = "com.github.roroche"
+//    outputFile = new File("${projectDir}/diagrams/class_diagram.plantuml")
+//}
 
 task myBuildClassDiagram(type: com.github.roroche.tasks.BuildClassDiagramTask) {
     packageName = "com.github.roroche"

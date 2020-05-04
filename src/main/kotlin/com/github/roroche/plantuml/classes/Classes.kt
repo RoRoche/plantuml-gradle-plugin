@@ -16,5 +16,19 @@ interface Classes {
      */
     abstract class Wrap(
         protected val origin: Classes
-    ): Classes by origin
+    ) : Classes by origin
+
+    /**
+     * Simple implementation containing a list of [Class].
+     *
+     * @property classes The list of [Class].
+     */
+    class Simple(
+        private val classes: List<Class<out Any>>
+    ) : Classes {
+        /**
+         * @return Classes to be used for diagram generation.
+         */
+        override fun list() = classes
+    }
 }

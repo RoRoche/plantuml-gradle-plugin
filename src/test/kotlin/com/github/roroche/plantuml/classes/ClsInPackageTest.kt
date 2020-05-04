@@ -23,5 +23,23 @@ class ClsInPackageTest : TestsSuite(
                 Vehicle::class.java
             )
         )
+    ),
+    TestCase(
+        "empty package returns empty list",
+        ClsContainsExactlyAssertion(
+            classes = ClsInPackage(
+                packageName = "com.github.roroche.examples.empty"
+            ),
+            expectedClasses = emptyList()
+        )
+    ),
+    TestCase(
+        "not existing package returns empty list",
+        ClsContainsExactlyAssertion(
+            classes = ClsInPackage(
+                packageName = "com.github.roroche.examples.missing"
+            ),
+            expectedClasses = emptyList()
+        )
     )
 )

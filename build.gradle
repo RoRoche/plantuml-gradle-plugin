@@ -23,7 +23,7 @@ group 'com.github.roroche'
 if (project.hasProperty('newVersion')) {
     project.version = project.newVersion
 } else {
-    project.version = '0.0.5-SNAPSHOT'
+    project.version = '0.0.6-SNAPSHOT'
 }
 
 repositories {
@@ -90,7 +90,7 @@ gradlePlugin {
     plugins {
         plantUmlPlugin {
             id = 'com.github.roroche.plantuml'
-            implementationClass = 'com.github.roroche.PlantUmlPlugin'
+            implementationClass = 'com.github.roroche.plantuml.PlantUmlPlugin'
         }
     }
 }
@@ -123,6 +123,11 @@ pluginBundle {
             description = 'Gradle plugin to build PlantUML diagrams from code (for living and up-to-date documentation)'
         }
     }
+}
+
+classDiagram {
+    packageName = "com.github.roroche"
+    outputFile = new File("${projectDir}/diagrams/class_diagram.plantuml")
 }
 
 task myBuildClassDiagram(type: com.github.roroche.tasks.BuildClassDiagramTask) {

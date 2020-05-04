@@ -1,7 +1,7 @@
 package com.github.roroche.plantuml
 
-import com.github.roroche.plantuml.tasks.ClassDiagramExtension
 import com.github.roroche.plantuml.tasks.BuildClassDiagramTask
+import com.github.roroche.plantuml.tasks.ClassDiagramExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -20,10 +20,10 @@ class PlantUmlPlugin implements Plugin<Project> {
                 "classDiagram",
                 ClassDiagramExtension.class
         )
-        final BuildClassDiagramTask buildClassDiagramTask = project.tasks.create(
+        project.tasks.create(
                 "buildClassDiagram",
-                BuildClassDiagramTask.class
+                BuildClassDiagramTask.class,
+                classDiagramExtension
         )
-        buildClassDiagramTask.populateParam(classDiagramExtension)
     }
 }

@@ -6,17 +6,19 @@ Gradle plugin to build PlantUML diagrams from code (for living and up-to-date do
 
 == Badges
 
-image::https://www.elegantobjects.org/badge.svg[Elegant Objects]
-image::https://www.elegantobjects.org/intellij-idea.svg[intellij-idea]
-https://www.rultor.com/p/yegor256/rultor[image:https://www.rultor.com/b/yegor256/rultor[DevOps
-By Rultor.com]]
+[![Gradle Plugin Portal](https://img.shields.io/maven-metadata/v/https/plugins.gradle.org/m2/com.github.roroche/nexus-publish-plugin/maven-metadata.xml.svg?label=gradlePluginPortal)](https://plugins.gradle.org/plugin/com.github.roroche.plantuml)
+
+=== Build
 
 image:https://travis-ci.org/RoRoche/plantuml-gradle-plugin.svg?branch=master["Build Status",link="https://travis-ci.org/RoRoche/plantuml-gradle-plugin"]
 
-image:https://api.codacy.com/project/badge/Grade/27af97ee5790463c82961db716b6f716["Codacy code quality",link="https://www.codacy.com/manual/romain-rochegude_2/plantuml-gradle-plugin?utm_source=github.com&utm_medium=referral&utm_content=RoRoche/plantuml-gradle-plugin&utm_campaign=Badge_Grade"]
+=== Code coverage
 
 https://codecov.io/gh/RoRoche/plantuml-gradle-plugin[image:https://codecov.io/gh/RoRoche/plantuml-gradle-plugin/branch/master/graph/badge.svg[codecov]]
 
+=== Analysis
+
+image:https://api.codacy.com/project/badge/Grade/27af97ee5790463c82961db716b6f716["Codacy code quality",link="https://www.codacy.com/manual/romain-rochegude_2/plantuml-gradle-plugin?utm_source=github.com&utm_medium=referral&utm_content=RoRoche/plantuml-gradle-plugin&utm_campaign=Badge_Grade"]
 https://sonarcloud.io/dashboard?id=RoRoche_plantuml-gradle-plugin[image:https://sonarcloud.io/api/project_badges/measure?project=RoRoche_plantuml-gradle-plugin&metric=alert_status[Quality
 Gate Status]]
 https://sonarcloud.io/dashboard?id=RoRoche_plantuml-gradle-plugin[image:https://sonarcloud.io/api/project_badges/measure?project=RoRoche_plantuml-gradle-plugin&metric=bugs[Bugs]]
@@ -36,13 +38,36 @@ https://sonarcloud.io/dashboard?id=RoRoche_plantuml-gradle-plugin[image:https://
 Debt]]
 https://sonarcloud.io/dashboard?id=RoRoche_plantuml-gradle-plugin[image:https://sonarcloud.io/api/project_badges/measure?project=RoRoche_plantuml-gradle-plugin&metric=vulnerabilities[Vulnerabilities]]
 
+=== Dependencies
+
 image::https://snyk.io/test/github/RoRoche/plantuml-gradle-plugin/badge.svg[Known Vulnerabilities]
+
+=== License
+
+TODO
+
+=== Version
+
+image:https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fplugins.gradle.org%2Fm2%2Fcom%2Fgithub%2Froroche%2Fplantuml-gradle-plugin%2Fmaven-metadata.xml[Maven metadata URL]
+
+=== Activity
+
+TODO
+
+=== Other
+
+image::https://www.elegantobjects.org/badge.svg[Elegant Objects]
+
+image::https://www.elegantobjects.org/intellij-idea.svg[intellij-idea]
+
+https://www.rultor.com/p/yegor256/rultor[image:https://www.rultor.com/b/yegor256/rultor[DevOps
+By Rultor.com]]
 
 https://hitsofcode.com/view/github/RoRoche/plantuml-gradle-plugin[image:https://hitsofcode.com/github/RoRoche/plantuml-gradle-plugin[Hits-of-Code]]
 
 == Dependency
 
-Please refer to TODO(include URL)
+Please refer to https://plugins.gradle.org/plugin/com.github.roroche.plantuml
 
 Using the https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block[plugins DSL]:
 

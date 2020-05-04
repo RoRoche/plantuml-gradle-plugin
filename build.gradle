@@ -3,7 +3,7 @@ buildscript {
         mavenLocal()
     }
     dependencies {
-        classpath "com.github.roroche:plantuml-gradle-plugin:0.0.12-SNAPSHOT"
+//        classpath "com.github.roroche:plantuml-gradle-plugin:0.0.1-SNAPSHOT"
     }
 }
 
@@ -16,14 +16,14 @@ plugins {
     id "maven-publish"
     id "jacoco"
     id "org.sonarqube" version "2.8"
-    id "com.github.roroche.plantuml" version "0.0.12-SNAPSHOT"
+//    id "com.github.roroche.plantuml" version "0.0.1-SNAPSHOT"
 }
 
 group 'com.github.roroche'
 if (project.hasProperty('newVersion')) {
     project.version = project.newVersion
 } else {
-    project.version = '0.0.12-SNAPSHOT'
+//    project.version = '0.0.1-SNAPSHOT'
 }
 
 repositories {
@@ -125,13 +125,13 @@ pluginBundle {
     }
 }
 
-classDiagram {
-    packageName = "com.github.roroche"
-    outputFile = new File("${projectDir}/diagrams/class_diagram.plantuml")
-    ignoredClasses = [
-            "com.github.roroche.plantuml.diagrams.Diagram\$Simple",
-            "com.github.roroche.plantuml.diagrams.Diagram\$Wrap",
-            "com.github.roroche.plantuml.classes.Classes\$Simple",
-            "com.github.roroche.plantuml.classes.Classes\$Wrap"
-    ]
-}
+//classDiagram {
+//    packageName = "com.github.roroche"
+//    outputFile = new File("${projectDir}/diagrams/class_diagram.plantuml")
+//    ignoredClasses = [
+//            "com.github.roroche.plantuml.diagrams.Diagram\$Simple",
+//            "com.github.roroche.plantuml.diagrams.Diagram\$Wrap",
+//            "com.github.roroche.plantuml.classes.Classes\$Simple",
+//            "com.github.roroche.plantuml.classes.Classes\$Wrap"
+//    ]
+//}

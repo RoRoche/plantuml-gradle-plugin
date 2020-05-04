@@ -36,13 +36,27 @@ https://sonarcloud.io/dashboard?id=RoRoche_plantuml-gradle-plugin[image:https://
 Debt]]
 https://sonarcloud.io/dashboard?id=RoRoche_plantuml-gradle-plugin[image:https://sonarcloud.io/api/project_badges/measure?project=RoRoche_plantuml-gradle-plugin&metric=vulnerabilities[Vulnerabilities]]
 
+=== Size
+
+image:https://img.shields.io/github/languages/code-size/RoRoche/plantuml-gradle-plugin[GitHub code size in bytes]
+
 === Dependencies
 
 image::https://snyk.io/test/github/RoRoche/plantuml-gradle-plugin/badge.svg[Known Vulnerabilities]
 
+=== Downloads
+
+image:https://img.shields.io/github/downloads/RoRoche/plantuml-gradle-plugin/total[GitHub All Releases]
+image:https://img.shields.io/github/downloads/RoRoche/plantuml-gradle-plugin/1.0.0/total[GitHub Releases]
+
+=== Issue tracking
+
+image:https://img.shields.io/github/issues-raw/RoRoche/plantuml-gradle-plugin[GitHub issues]
+image:https://img.shields.io/github/issues-closed/RoRoche/plantuml-gradle-plugin[GitHub closed issues]
+
 === License
 
-TODO
+image:https://img.shields.io/github/license/RoRoche/plantuml-gradle-plugin[GitHub]
 
 === Version
 
@@ -50,7 +64,9 @@ image:https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fplugins.
 
 === Activity
 
-TODO
+image:https://img.shields.io/github/contributors/RoRoche/plantuml-gradle-plugin[GitHub contributors]
+image:https://img.shields.io/github/last-commit/RoRoche/plantuml-gradle-plugin[GitHub last commit]
+image:https://img.shields.io/github/release-date/RoRoche/plantuml-gradle-plugin[GitHub Release Date]
 
 === Other
 
@@ -279,3 +295,9 @@ Built on top of awesome libraries:
 
 Icons made by https://www.flaticon.com/authors/eucalyp[Eucalyp] from
 https://www.flaticon.com/[www.flaticon.com]
+
+== About me
+
+image::https://img.shields.io/twitter/follow/RRochegude?label=Follow%20me%20%40RRochegude&style=social[Twitter Follow]
+image::https://img.shields.io/badge/LinkedIn-Romain%20Rochegude-blue?style=social&logo=linkedin[LinkiedIn, link=https://fr.linkedin.com/in/romain-rochegude-4750503b]
+

@@ -12,18 +12,7 @@ import java.io.File
 class DiagramWithLog(
     origin: Diagram,
     private val logger: Logger
-): Diagram.Wrap(origin) {
-
-    /**
-     * @return The content of the diagram.
-     */
-    override fun content(): String {
-        val content = super.content()
-        logger.debug(
-            "Content to print: $content"
-        )
-        return content
-    }
+) : Diagram.Wrap(origin) {
 
     /**
      * Print the content into the [File].

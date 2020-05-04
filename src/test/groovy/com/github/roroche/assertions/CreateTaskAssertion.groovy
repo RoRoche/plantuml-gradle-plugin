@@ -1,6 +1,6 @@
 package com.github.roroche.assertions
 
-import com.github.roroche.BuildClassDiagramTask
+
 import com.pragmaticobjects.oo.tests.Assertion
 import org.gradle.api.Project
 import org.gradle.api.Task

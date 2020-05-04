@@ -1,3 +1,12 @@
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+    dependencies {
+        classpath "com.github.roroche:plantuml-gradle-plugin:0.0.5-SNAPSHOT"
+    }
+}
+
 plugins {
     id 'groovy'
     id 'java'
@@ -7,14 +16,14 @@ plugins {
     id "maven-publish"
     id "jacoco"
     id "org.sonarqube" version "2.8"
-//    id "com.github.roroche.plantuml" version "0.0.1-SNAPSHOT"
+    id "com.github.roroche.plantuml" version "0.0.5-SNAPSHOT"
 }
 
 group 'com.github.roroche'
 if (project.hasProperty('newVersion')) {
     project.version = project.newVersion
 } else {
-    project.version = '0.0.1-SNAPSHOT'
+    project.version = '0.0.5-SNAPSHOT'
 }
 
 repositories {
@@ -39,6 +48,16 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+compileGroovy {
+    dependsOn tasks.getByPath('compileKotlin')
+    classpath += files(compileKotlin.destinationDir)
+}
+
+compileTestGroovy {
+    dependsOn tasks.getByPath('compileTestKotlin')
+    classpath += files(compileTestKotlin.destinationDir)
 }
 
 compileKotlin {
@@ -104,4 +123,9 @@ pluginBundle {
             description = 'Gradle plugin to build PlantUML diagrams from code (for living and up-to-date documentation)'
         }
     }
+}
+
+task myBuildClassDiagram(type: com.github.roroche.tasks.BuildClassDiagramTask) {
+    packageName = "com.github.roroche"
+    outputFile = new File("${projectDir}/diagrams/class_diagram.plantuml")
 }

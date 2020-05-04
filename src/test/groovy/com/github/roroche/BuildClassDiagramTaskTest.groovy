@@ -3,6 +3,7 @@ package com.github.roroche
 import com.github.roroche.assertions.CreateTaskAssertion
 import com.github.roroche.assertions.ExecuteBuildClassDiagramTaskAssertion
 import com.github.roroche.assertions.GrvFileHasContentAssertion
+import com.github.roroche.tasks.BuildClassDiagramTask
 import com.pragmaticobjects.oo.tests.TestCase
 import com.pragmaticobjects.oo.tests.junit5.TestsSuite
 import org.gradle.testfixtures.ProjectBuilder

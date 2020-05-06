@@ -5,6 +5,7 @@ import com.github.roroche.plantuml.diagrams.ClassDiagram
 import com.github.roroche.plantuml.diagrams.Diagram
 import com.github.roroche.plantuml.diagrams.DiagramWithLog
 import org.gradle.api.DefaultTask
+import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.TaskAction
 
 import javax.inject.Inject
@@ -62,6 +63,7 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
         diagram.print(extension.outputFile)
     }
 
+    @Internal
     protected ClassLoader getClassLoader() {
         final URL[] urls = project.sourceSets.main.output.classesDirs.files.collect {
             if (it != null) {

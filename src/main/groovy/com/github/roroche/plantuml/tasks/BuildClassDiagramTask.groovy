@@ -51,13 +51,17 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
         getLogger().lifecycle(
                 "URLs to scan: " + urls
         )
+        final ClassLoader classLoader = new URLClassLoader(urls)
         final Classes classes = new ClsWithLog(
                 new ClsFiltered(
                         new ClsInPackage(
                                 extension.packageName,
-                                urls
+                                classLoader
                         ),
-                        new ClsWithNames(extension.ignoredClasses)
+                        new ClsWithNames(
+                                extension.ignoredClasses,
+                                classLoader
+                        )
                 ),
                 getLogger()
         )

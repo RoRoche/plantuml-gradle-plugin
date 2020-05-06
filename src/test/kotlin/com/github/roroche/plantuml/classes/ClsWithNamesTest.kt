@@ -20,7 +20,8 @@ class ClsWithNamesTest : TestsSuite(
                     "com.github.roroche.examples.Car",
                     "com.github.roroche.examples.Driver",
                     "com.github.roroche.examples.Vehicle"
-                )
+                ),
+                classLoader = Thread.currentThread().contextClassLoader
             ),
             expectedClasses = listOf(
                 Car::class.java,
@@ -33,7 +34,8 @@ class ClsWithNamesTest : TestsSuite(
         "classes with empty names returns empty list",
         ClsIsEmptyAssertion(
             classes = ClsWithNames(
-                names = emptyList()
+                names = emptyList(),
+                classLoader = Thread.currentThread().contextClassLoader
             )
         )
     ),
@@ -41,7 +43,8 @@ class ClsWithNamesTest : TestsSuite(
         "classes with null names returns empty list",
         ClsIsEmptyAssertion(
             classes = ClsWithNames(
-                names = null
+                names = null,
+                classLoader = Thread.currentThread().contextClassLoader
             )
         )
     )

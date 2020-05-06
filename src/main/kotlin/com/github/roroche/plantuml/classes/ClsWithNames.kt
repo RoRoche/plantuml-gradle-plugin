@@ -6,17 +6,22 @@ package com.github.roroche.plantuml.classes
  * @property names The names of the classes to find.
  */
 class ClsWithNames(
-    private val names: List<String>?
-): Classes {
+    private val names: List<String>?,
+    private val classLoader: ClassLoader
+) : Classes {
     /**
      * @return Classes to be used for diagram generation.
      */
     override fun list(): List<Class<out Any>> {
-        return if(names?.isEmpty() != false) {
+        return if (names?.isEmpty() != false) {
             emptyList()
         } else {
             names.map { name ->
-                Class.forName(name)
+                Class.forName(
+                    name,
+                    true,
+                    classLoader
+                )
             }
         }
     }

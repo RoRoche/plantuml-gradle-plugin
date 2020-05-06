@@ -70,12 +70,10 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
                         new ClsInPackage(
                                 extension.packageName,
                                 new Reflections(
-                                        new ConfigurationBuilder()
-                                                .setScanners(
-                                                        new SubTypesScanner(false),
-                                                        new TypeAnnotationsScanner()
-                                                ).setExecutorService(
-                                                Executors.newFixedThreadPool(4)
+                                        new ConfigurationBuilder(
+                                        ).setScanners(
+                                                new SubTypesScanner(false),
+                                                new TypeAnnotationsScanner()
                                         ).setClassLoaders(
                                                 classLoader
                                         )

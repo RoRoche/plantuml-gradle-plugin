@@ -3,6 +3,11 @@ package com.github.roroche.plantuml.classes
 import com.github.roroche.plantuml.classes.exceptions.InvalidPackageException
 import org.reflections.Configuration
 import org.reflections.Reflections
+import org.reflections.scanners.SubTypesScanner
+import org.reflections.scanners.TypeAnnotationsScanner
+import org.reflections.util.ConfigurationBuilder
+import java.net.URL
+import java.net.URLClassLoader
 
 /**
  * Utility class to find [Classes] in a given package.
@@ -27,6 +32,39 @@ class ClsInPackage(
     ) : this(
         packageName = packageName,
         reflections = Reflections(configuration)
+    )
+
+    /**
+     * Secondary constructor.
+     *
+     * @param packageName The name of the package to scan.
+     * @param classLoader The [ClassLoader] to use.
+     */
+    constructor(
+        packageName: String,
+        classLoader: ClassLoader
+    ) : this(
+        packageName = packageName,
+        configuration = ConfigurationBuilder().setScanners(
+            SubTypesScanner(false),
+            TypeAnnotationsScanner()
+        ).addClassLoader(
+            classLoader
+        )
+    )
+
+    /**
+     * Secondary constructor.
+     *
+     * @param packageName The name of the package to scan.
+     * @param urls The [URL] array to use.
+     */
+    constructor(
+        packageName: String,
+        urls: Array<URL>
+    ) : this(
+        packageName = packageName,
+        classLoader = URLClassLoader(urls)
     )
 
     /**

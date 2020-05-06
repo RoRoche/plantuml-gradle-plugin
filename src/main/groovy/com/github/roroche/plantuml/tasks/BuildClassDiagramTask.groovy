@@ -6,13 +6,8 @@ import com.github.roroche.plantuml.diagrams.Diagram
 import com.github.roroche.plantuml.diagrams.DiagramWithLog
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
-import org.reflections.Reflections
-import org.reflections.scanners.SubTypesScanner
-import org.reflections.scanners.TypeAnnotationsScanner
-import org.reflections.util.ConfigurationBuilder
 
 import javax.inject.Inject
-import java.util.concurrent.Executors
 
 /**
  * Task to build PlantUML class diagram.
@@ -64,20 +59,11 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
         getLogger().lifecycle(
                 "URLs to scan: " + urls
         )
-        final ClassLoader classLoader = new URLClassLoader(urls)
         final Classes classes = new ClsWithLog(
                 new ClsFiltered(
                         new ClsInPackage(
                                 extension.packageName,
-                                new Reflections(
-                                        new ConfigurationBuilder(
-                                        ).setScanners(
-                                                new SubTypesScanner(false),
-                                                new TypeAnnotationsScanner()
-                                        ).setClassLoaders(
-                                                classLoader
-                                        )
-                                )
+                                urls
                         ),
                         new ClsWithNames(extension.ignoredClasses)
                 ),

@@ -6,6 +6,7 @@ import com.github.roroche.plantuml.diagrams.Diagram
 import com.github.roroche.plantuml.diagrams.DiagramWithLog
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
+import org.reflections.Reflections
 
 import javax.inject.Inject
 
@@ -30,17 +31,35 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
     @Override
     void execute() {
         getLogger().debug(
-                String.format("Package to scan: %s", extension.packageName)
+                "Package to scan: {}",
+                extension.packageName
         )
         getLogger().debug(
-                String.format("Output file: %s", extension.outputFile)
+                "Output file: {}",
+                extension.outputFile
         )
         getLogger().debug(
-                String.format("Classes to ignore: %s", extension.ignoredClasses)
+                "Classes to ignore: {}",
+                extension.ignoredClasses
         )
+        final URL[] urls = project.sourceSets.main.output.classesDirs.files.collect { File dir ->
+            dir.listFiles()
+        }.flatten().collect {
+            it.toURI().toURL()
+        } as URL[]
+        getLogger().lifecycle(
+                "URLs to scan: " + urls
+        )
+        final ClassLoader classLoader = new URLClassLoader(urls)
         final Classes classes = new ClsWithLog(
                 new ClsFiltered(
-                        new ClsInPackage(extension.packageName),
+                        new ClsInPackage(
+                                extension.packageName,
+                                new Reflections(
+                                        extension.packageName,
+                                        classLoader
+                                )
+                        ),
                         new ClsWithNames(extension.ignoredClasses)
                 ),
                 getLogger()

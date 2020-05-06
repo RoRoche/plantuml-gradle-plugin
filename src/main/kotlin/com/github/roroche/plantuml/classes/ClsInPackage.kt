@@ -1,50 +1,32 @@
 package com.github.roroche.plantuml.classes
 
 import com.github.roroche.plantuml.classes.exceptions.InvalidPackageException
+import org.reflections.Configuration
 import org.reflections.Reflections
-import org.reflections.scanners.SubTypesScanner
-import org.reflections.scanners.TypeAnnotationsScanner
-import org.reflections.util.ClasspathHelper
-import org.reflections.util.ConfigurationBuilder
-import java.net.URL
-import java.util.concurrent.Executors
 
 /**
  * Utility class to find [Classes] in a given package.
  *
  * @property packageName The name of the package to scan.
- * @property packageUrls URL of the package (passed as [Collection]).
  * @property reflections Utility to find classes in pckage.
  */
 class ClsInPackage(
     private val packageName: String,
-    private val packageUrls: Collection<URL>,
     private val reflections: Reflections
 ) : Classes {
 
     /**
-     * Secondary constructor using URLs.
+     * Secondary constructor with reflections configuration.
      *
      * @param packageName The name of the package to scan.
-     * @param packageUrls URL of the package (passed as [Collection]).
+     * @param configuration The [Configuration] to use.
      */
     constructor(
         packageName: String,
-        packageUrls: Collection<URL>
+        configuration: Configuration
     ) : this(
-        packageName,
-        packageUrls,
-        Reflections(
-            ConfigurationBuilder()
-                .setUrls(
-                    packageUrls
-                ).setScanners(
-                    SubTypesScanner(false),
-                    TypeAnnotationsScanner()
-                ).setExecutorService(
-                    Executors.newFixedThreadPool(4)
-                )
-        )
+        packageName = packageName,
+        reflections = Reflections(configuration)
     )
 
     /**
@@ -52,20 +34,26 @@ class ClsInPackage(
      *
      * @param packageName The name of the package to scan.
      */
-    constructor(packageName: String) : this(
-        packageName,
-        ClasspathHelper.forPackage(packageName)
+    constructor(
+        packageName: String
+    ) : this(
+        packageName = packageName,
+        reflections = Reflections(
+            packageName,
+            Thread.currentThread().contextClassLoader
+        )
     )
 
     /**
      * @return Classes to be used for diagram generation.
      */
     override fun list(): List<Class<out Any>> {
-        if (packageUrls.isNullOrEmpty()) {
-            throw InvalidPackageException(packageName)
-        }
-        return reflections.getSubTypesOf(
+        val list = reflections.getSubTypesOf(
             Any::class.java
         ).asIterable().toList()
+        if (list.isNullOrEmpty()) {
+            throw InvalidPackageException(packageName)
+        }
+        return list
     }
 }

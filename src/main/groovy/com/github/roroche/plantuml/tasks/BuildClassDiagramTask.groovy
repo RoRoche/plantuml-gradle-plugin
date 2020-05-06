@@ -41,15 +41,7 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
                 "Classes to ignore: {}",
                 extension.ignoredClasses
         )
-        getLogger().lifecycle(
-                "URLs to scan: " + project.sourceSets.main.output.classesDirs.files
-        )
-        final URL[] urls = project.sourceSets.main.output.classesDirs.files.collect { File dir ->
-            dir.listFiles()
-        }.flatten().collect {
-            getLogger().lifecycle(
-                    "File?: " + it
-            )
+        final URL[] urls = project.sourceSets.main.output.classesDirs.files.collect {
             if (it != null) {
                 it.toURI().toURL()
             }

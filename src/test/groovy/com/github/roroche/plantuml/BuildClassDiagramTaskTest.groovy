@@ -8,7 +8,6 @@ import com.github.roroche.plantuml.tasks.BuildClassDiagramTask
 import com.github.roroche.plantuml.tasks.ClassDiagramExtension
 import com.pragmaticobjects.oo.tests.TestCase
 import com.pragmaticobjects.oo.tests.junit5.TestsSuite
-import org.gradle.testfixtures.ProjectBuilder
 import org.junit.jupiter.api.io.TempDir
 
 import java.nio.file.Path
@@ -23,7 +22,7 @@ class BuildClassDiagramTaskTest extends TestsSuite {
                         "test buildClassDiagramTask",
                         new CreateTaskAssertion(
                                 new CreatedTask(
-                                        ProjectBuilder.builder().build(),
+                                        BuiltProject.instance.toProject(),
                                         "buildClassDiagramTask",
                                         BuildClassDiagramTask.class,
                                         new ClassDiagramExtension(
@@ -39,7 +38,7 @@ class BuildClassDiagramTaskTest extends TestsSuite {
                         "test buildClassDiagramTask print diagram to file",
                         new ExecuteTaskAssertion(
                                 new CreatedTask(
-                                        ProjectBuilder.builder().build(),
+                                        BuiltProject.instance.toProject(),
                                         "buildClassDiagramTask",
                                         BuildClassDiagramTask.class,
                                         new ClassDiagramExtension(

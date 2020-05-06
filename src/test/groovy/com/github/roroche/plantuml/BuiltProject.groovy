@@ -14,6 +14,7 @@ class BuiltProject {
      * @return The Project instance.
      */
     Project toProject() {
+        project.sourceSets.main.output.classesDirs = project.buildDir.toPath().resolve("classes").resolve("java")
         return project
     }
 }

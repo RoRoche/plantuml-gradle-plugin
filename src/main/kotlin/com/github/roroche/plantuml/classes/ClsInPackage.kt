@@ -5,6 +5,7 @@ import org.reflections.Configuration
 import org.reflections.Reflections
 import org.reflections.scanners.SubTypesScanner
 import org.reflections.scanners.TypeAnnotationsScanner
+import org.reflections.util.ClasspathHelper
 import org.reflections.util.ConfigurationBuilder
 import java.net.URL
 import java.net.URLClassLoader
@@ -42,13 +43,12 @@ class ClsInPackage(
      */
     constructor(
         packageName: String,
-        urls: Array<URL>,
         classLoader: ClassLoader
     ) : this(
         packageName = packageName,
         configuration = ConfigurationBuilder(
         ).setUrls(
-            urls.toList()
+            ClasspathHelper.forClassLoader(classLoader)
         ).setScanners(
             SubTypesScanner(false),
             TypeAnnotationsScanner()
@@ -68,7 +68,6 @@ class ClsInPackage(
         urls: Array<URL>
     ) : this(
         packageName = packageName,
-        urls = urls,
         classLoader = URLClassLoader(urls)
     )
 

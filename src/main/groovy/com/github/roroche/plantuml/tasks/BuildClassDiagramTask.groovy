@@ -41,17 +41,7 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
                 "Classes to ignore: {}",
                 extension.ignoredClasses
         )
-        final URL[] urls = project.sourceSets.main.output.classesDirs.files.collect {
-            if (it != null) {
-                it.toURI().toURL()
-            }
-        }.findAll {
-            it != null
-        } as URL[]
-        getLogger().lifecycle(
-                "URLs to scan: " + urls
-        )
-        final ClassLoader classLoader = new URLClassLoader(urls)
+        final ClassLoader classLoader = getClassLoader()
         final Classes classes = new ClsWithLog(
                 new ClsFiltered(
                         new ClsInPackage(
@@ -70,5 +60,19 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
                 getLogger()
         )
         diagram.print(extension.outputFile)
+    }
+
+    protected ClassLoader getClassLoader() {
+        final URL[] urls = project.sourceSets.main.output.classesDirs.files.collect {
+            if (it != null) {
+                it.toURI().toURL()
+            }
+        }.findAll {
+            it != null
+        } as URL[]
+        getLogger().debug(
+                "URLs to scan: " + urls
+        )
+        return new URLClassLoader(urls)
     }
 }

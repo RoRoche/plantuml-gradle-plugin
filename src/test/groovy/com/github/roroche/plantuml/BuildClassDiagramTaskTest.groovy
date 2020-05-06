@@ -4,10 +4,10 @@ import com.github.roroche.plantuml.assertions.CreateTaskAssertion
 import com.github.roroche.plantuml.assertions.CreatedTask
 import com.github.roroche.plantuml.assertions.ExecuteTaskAssertion
 import com.github.roroche.plantuml.assertions.GrvFileHasContentAssertion
-import com.github.roroche.plantuml.tasks.BuildClassDiagramTask
 import com.github.roroche.plantuml.tasks.ClassDiagramExtension
 import com.pragmaticobjects.oo.tests.TestCase
 import com.pragmaticobjects.oo.tests.junit5.TestsSuite
+import org.gradle.testfixtures.ProjectBuilder
 import org.junit.jupiter.api.io.TempDir
 
 import java.nio.file.Path
@@ -22,25 +22,25 @@ class BuildClassDiagramTaskTest extends TestsSuite {
                         "test buildClassDiagramTask",
                         new CreateTaskAssertion(
                                 new CreatedTask(
-                                        BuiltProject.instance.toProject(),
+                                        ProjectBuilder.builder().build(),
                                         "buildClassDiagramTask",
-                                        BuildClassDiagramTask.class,
+                                        MockBuildClassDiagramTask.class,
                                         new ClassDiagramExtension(
                                                 "com.github.roroche.examples",
                                                 tmpDirPath.resolve("output.txt").toFile(),
                                                 List.of()
                                         )
                                 ),
-                                BuildClassDiagramTask.class
+                                MockBuildClassDiagramTask.class
                         )
                 ),
                 new TestCase(
                         "test buildClassDiagramTask print diagram to file",
                         new ExecuteTaskAssertion(
                                 new CreatedTask(
-                                        BuiltProject.instance.toProject(),
+                                        ProjectBuilder.builder().build(),
                                         "buildClassDiagramTask",
-                                        BuildClassDiagramTask.class,
+                                        MockBuildClassDiagramTask.class,
                                         new ClassDiagramExtension(
                                                 "com.github.roroche.examples",
                                                 tmpDirPath.resolve("output.txt").toFile(),

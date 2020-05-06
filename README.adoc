@@ -36,23 +36,9 @@ https://sonarcloud.io/dashboard?id=RoRoche_plantuml-gradle-plugin[image:https://
 Debt]]
 https://sonarcloud.io/dashboard?id=RoRoche_plantuml-gradle-plugin[image:https://sonarcloud.io/api/project_badges/measure?project=RoRoche_plantuml-gradle-plugin&metric=vulnerabilities[Vulnerabilities]]
 
-=== Size
-
-image:https://img.shields.io/github/languages/code-size/RoRoche/plantuml-gradle-plugin[GitHub code size in bytes]
-
 === Dependencies
 
 image::https://snyk.io/test/github/RoRoche/plantuml-gradle-plugin/badge.svg[Known Vulnerabilities]
-
-=== Downloads
-
-image:https://img.shields.io/github/downloads/RoRoche/plantuml-gradle-plugin/total[GitHub All Releases]
-image:https://img.shields.io/github/downloads/RoRoche/plantuml-gradle-plugin/1.0.0/total[GitHub Releases]
-
-=== Issue tracking
-
-image:https://img.shields.io/github/issues-raw/RoRoche/plantuml-gradle-plugin[GitHub issues]
-image:https://img.shields.io/github/issues-closed/RoRoche/plantuml-gradle-plugin[GitHub closed issues]
 
 === License
 

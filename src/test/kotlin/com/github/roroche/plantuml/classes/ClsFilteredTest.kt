@@ -21,7 +21,8 @@ class ClsFilteredTest : TestsSuite(
                 ignored = ClsWithNames(
                     names = listOf(
                         "com.github.roroche.examples.Vehicle"
-                    )
+                    ),
+                    classLoader = Thread.currentThread().contextClassLoader
                 )
             ),
             expectedClasses = listOf(

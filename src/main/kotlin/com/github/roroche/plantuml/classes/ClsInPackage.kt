@@ -1,12 +1,7 @@
 package com.github.roroche.plantuml.classes
 
 import com.github.roroche.plantuml.classes.exceptions.InvalidPackageException
-import org.reflections.Configuration
-import org.reflections.Reflections
-import org.reflections.scanners.SubTypesScanner
-import org.reflections.scanners.TypeAnnotationsScanner
-import org.reflections.util.ClasspathHelper
-import org.reflections.util.ConfigurationBuilder
+import io.github.classgraph.ClassGraph
 import java.net.URL
 import java.net.URLClassLoader
 
@@ -14,26 +9,12 @@ import java.net.URLClassLoader
  * Utility class to find [Classes] in a given package.
  *
  * @property packageName The name of the package to scan.
- * @property reflections Utility to find classes in pckage.
+ * @property classGraph Utility to find classes in package.
  */
 class ClsInPackage(
-    private val packageName: String,
-    private val reflections: Reflections
+        private val packageName: String,
+        private val classGraph: ClassGraph
 ) : Classes {
-
-    /**
-     * Secondary constructor with reflections configuration.
-     *
-     * @param packageName The name of the package to scan.
-     * @param configuration The [Configuration] to use.
-     */
-    constructor(
-        packageName: String,
-        configuration: Configuration
-    ) : this(
-        packageName = packageName,
-        reflections = Reflections(configuration)
-    )
 
     /**
      * Secondary constructor.
@@ -42,19 +23,17 @@ class ClsInPackage(
      * @param classLoader The [ClassLoader] to use.
      */
     constructor(
-        packageName: String,
-        classLoader: ClassLoader
+            packageName: String,
+            classLoader: ClassLoader
     ) : this(
-        packageName = packageName,
-        configuration = ConfigurationBuilder(
-        ).setUrls(
-            ClasspathHelper.forClassLoader(classLoader)
-        ).setScanners(
-            SubTypesScanner(false),
-            TypeAnnotationsScanner()
-        ).addClassLoader(
-            classLoader
-        )
+            packageName = packageName,
+            classGraph = ClassGraph(
+            ).whitelistPackages(
+                    packageName
+            ).enableClassInfo(
+            ).overrideClassLoaders(
+                    classLoader
+            )
     )
 
     /**
@@ -64,11 +43,11 @@ class ClsInPackage(
      * @param urls The [URL] array to use.
      */
     constructor(
-        packageName: String,
-        urls: Array<URL>
+            packageName: String,
+            urls: Array<URL>
     ) : this(
-        packageName = packageName,
-        classLoader = URLClassLoader(urls)
+            packageName = packageName,
+            classLoader = URLClassLoader(urls)
     )
 
     /**
@@ -77,25 +56,20 @@ class ClsInPackage(
      * @param packageName The name of the package to scan.
      */
     constructor(
-        packageName: String
+            packageName: String
     ) : this(
-        packageName = packageName,
-        reflections = Reflections(
-            packageName,
-            Thread.currentThread().contextClassLoader
-        )
+            packageName = packageName,
+            classLoader = Thread.currentThread().contextClassLoader
     )
 
     /**
      * @return Classes to be used for diagram generation.
      */
     override fun list(): List<Class<out Any>> {
-        val list = reflections.getSubTypesOf(
-            Any::class.java
-        ).asIterable().toList()
-        if (list.isNullOrEmpty()) {
-            throw InvalidPackageException(packageName)
+        classGraph.scan().use { scanResult ->
+            return scanResult.allClasses.loadClasses().ifEmpty {
+                throw InvalidPackageException(packageName)
+            }
         }
-        return list
     }
 }

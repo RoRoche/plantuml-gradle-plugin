@@ -273,7 +273,7 @@ generateDiagramClasses.dependsOn(buildClassDiagram) // <4>
 Built on top of awesome libraries:
 
 * https://github.com/jboz/plantuml-builder
-* https://github.com/ronmamo/reflections
+* https://github.com/classgraph/classgraph
 
 == Icon credits
 

@@ -1,5 +1,14 @@
 package com.github.roroche.plantuml;
 
+import java.net.URL;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.reflections.vfs.Vfs;
+
+import com.google.common.collect.Lists;
+
 /**
  * https://gist.github.com/nonrational/287ed109bb0852f982e8
  *

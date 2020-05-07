@@ -1,5 +1,6 @@
 package com.github.roroche.plantuml.tasks
 
+import com.github.roroche.plantuml.ReflectionsHelper
 import com.github.roroche.plantuml.classes.*
 import com.github.roroche.plantuml.diagrams.ClassDiagram
 import com.github.roroche.plantuml.diagrams.Diagram
@@ -42,6 +43,7 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
                 "Classes to ignore: {}",
                 extension.ignoredClasses
         )
+        ReflectionsHelper.registerUrlTypes()
         final ClassLoader classLoader = getClassLoader()
         final Classes classes = new ClsWithLog(
                 new ClsFiltered(

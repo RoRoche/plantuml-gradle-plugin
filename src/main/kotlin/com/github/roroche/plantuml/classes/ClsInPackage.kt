@@ -31,7 +31,7 @@ class ClsInPackage(
         ).whitelistPackages(
             packageName
         ).enableClassInfo(
-        ).overrideClassLoaders(
+        ).addClassLoader(
             classLoader
         )
     )

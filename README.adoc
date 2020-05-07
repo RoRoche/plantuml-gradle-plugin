@@ -1,12 +1,5 @@
 = plantuml-gradle-plugin
 
-CAUTION: Still unstable due to reflection issues.
-
-See:
-
-* https://stackoverflow.com/questions/61645090/custom-gradle-plugin-throws-unable-to-load-class-io-github-classgraph-classgrap
-* https://stackoverflow.com/questions/61652732/gradle-custom-plugin-using-reflections-throws-could-not-create-vfs-dir-from-url
-
 image::assets/icon.png[Icon]
 
 Gradle plugin to build PlantUML diagrams from code (for living and up-to-date documentation).
@@ -77,6 +70,7 @@ Please refer to https://plugins.gradle.org/plugin/com.github.roroche.plantuml
 Using the https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block[plugins DSL]:
 
 .build.gradle
+[source, groovy]
 ----
 plugins {
     id "com.github.roroche.plantuml" version "{latest_version}" // <1>
@@ -87,6 +81,7 @@ plugins {
 Using https://docs.gradle.org/current/userguide/plugins.html#sec:old_plugin_application[legacy plugin application]:
 
 .build.gradle
+[source, groovy]
 ----
 buildscript {
     repositories {
@@ -108,6 +103,7 @@ apply plugin: "com.github.roroche.plantuml" // <3>
 Maybe you would have to configure the plugin management with repositories where to look for plugins:
 
 .settings.gradle
+[source, groovy]
 ----
 pluginManagement {
     repositories {
@@ -120,6 +116,7 @@ pluginManagement {
 == Configuration
 
 .build.gradle
+[source, groovy]
 ----
 classDiagram { // <1>
     packageName = "com.github.roroche" // <2>

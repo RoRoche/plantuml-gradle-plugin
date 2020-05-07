@@ -3,7 +3,7 @@ os: linux
 dist: trusty
 language: java
 jdk:
-  - openjdk11
+  - openjdk8
 install: true
 
 before_cache:

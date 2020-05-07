@@ -31,8 +31,7 @@ class "ClsFiltered" {
 
 class "ClsInPackage" {
   packageName : String
-  packageUrls : Collection<URL>
-  reflections : Reflections
+  classGraph : ClassGraph
   list() : List<Class<?>>
 }
 
@@ -43,7 +42,12 @@ class "ClsWithLog" {
 
 class "ClsWithNames" {
   names : List<String>
+  classLoader : ClassLoader
   list() : List<Class<?>>
+}
+
+class "CompileClasspathUrls" {
+  super$2$$getStaticMetaClass() : MetaClass
 }
 
 interface "CustomTask" {
@@ -60,6 +64,38 @@ class "DiagramWithLog" {
   print(File)
 }
 
+class "FilesUrls" {
+  files : Set<File>
+  metaClass : MetaClass
+  getProperty(String) : Object
+  invokeMethod(String, Object) : Object
+  setProperty(String, Object)
+  toList() : List<URL>
+}
+
+class "InvalidPackageException"
+
+class "LoggableUrls" {
+  prefix : String
+  logger : Logger
+  super$2$$getStaticMetaClass() : MetaClass
+  super$2$toList() : List
+  toList() : List<URL>
+}
+
+class "MainOutputUrls" {
+  super$2$$getStaticMetaClass() : MetaClass
+}
+
+class "MergedUrls" {
+  urls : List<Urls>
+  metaClass : MetaClass
+  getProperty(String) : Object
+  invokeMethod(String, Object) : Object
+  setProperty(String, Object)
+  toList() : List<URL>
+}
+
 class "PlantUmlPlugin" {
   metaClass : MetaClass
   apply(Project)
@@ -69,13 +105,46 @@ class "PlantUmlPlugin" {
   setProperty(String, Object)
 }
 
+class "Simple" {
+  classes : List<Class<?>>
+  list() : List<Class<?>>
+}
+
+interface "Urls" {
+  toList() : List<URL>
+}
+
+abstract class "Wrap" {
+  origin : Classes
+  list() : List<Class<?>>
+}
+
+class "_toList_closure1" {
+  call(File) : Object
+  doCall(File) : Object
+}
+
 "BuildClassDiagramTask" --> "ClassDiagramExtension" : extension
 "Classes" <-> "ClsFiltered" : /ignored
 "Classes" <|-- "ClsInPackage"
 "Classes" <|-- "ClsWithLog"
 "Classes" <|-- "ClsWithNames"
+"Classes" <|-- "Simple"
+"Classes" <-> "Wrap" : /origin
 "CustomTask" <|-- "BuildClassDiagramTask"
 "Diagram" <|-- "ClassDiagram"
 "Diagram" <|-- "DiagramWithLog"
+"Urls" <|-- "CompileClasspathUrls"
+"Urls" <|-- "FilesUrls"
+"Urls" <|-- "LoggableUrls"
+"Urls" <|-- "MainOutputUrls"
+"Urls" "*" <-> "MergedUrls" : /urls
+"Wrap" <|-- "ClassDiagram"
+"Wrap" <|-- "ClsFiltered"
+"Wrap" <|-- "ClsWithLog"
+"Wrap" <|-- "CompileClasspathUrls"
+"Wrap" <|-- "DiagramWithLog"
+"Wrap" <|-- "LoggableUrls"
+"Wrap" <|-- "MainOutputUrls"
 
 @enduml

@@ -1,7 +1,9 @@
 = plantuml-gradle-plugin
 
 CAUTION: Still unstable due to reflection issues.
+
 See:
+
 * https://stackoverflow.com/questions/61645090/custom-gradle-plugin-throws-unable-to-load-class-io-github-classgraph-classgrap
 * https://stackoverflow.com/questions/61652732/gradle-custom-plugin-using-reflections-throws-could-not-create-vfs-dir-from-url
 

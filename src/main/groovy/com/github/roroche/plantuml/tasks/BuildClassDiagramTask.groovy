@@ -1,6 +1,5 @@
 package com.github.roroche.plantuml.tasks
 
-
 import com.github.roroche.plantuml.classes.*
 import com.github.roroche.plantuml.diagrams.ClassDiagram
 import com.github.roroche.plantuml.diagrams.Diagram

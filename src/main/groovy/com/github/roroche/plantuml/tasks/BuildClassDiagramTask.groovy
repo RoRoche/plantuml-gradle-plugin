@@ -7,6 +7,7 @@ import com.github.roroche.plantuml.diagrams.DiagramWithLog
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.TaskAction
+import org.reflections.Reflections
 
 import javax.inject.Inject
 
@@ -43,6 +44,13 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
                 extension.ignoredClasses
         )
         final ClassLoader classLoader = getClassLoader()
+        final Reflections reflections = new Reflections(extension.packageName, classLoader);
+        final Set<Class<? extends Object>> allClasses = reflections.getSubTypesOf Object.class
+        for (Class c : allClasses) {
+            getLogger().lifecycle(
+                    "Class Name to print : " + c.getName()
+            )
+        }
         final Classes classes = new ClsWithLog(
                 new ClsFiltered(
                         new ClsInPackage(
@@ -65,6 +73,15 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
 
     @Internal
     protected ClassLoader getClassLoader() {
+        URL[] urls = getUrls()
+        getLogger().debug(
+                "URLs to scan: " + urls
+        )
+        return new URLClassLoader(urls)
+    }
+
+    @Internal
+    protected URL[] getUrls() {
         final URL[] urls = project.sourceSets.main.output.classesDirs.files.collect {
             if (it != null) {
                 it.toURI().toURL()
@@ -72,9 +89,6 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
         }.findAll {
             it != null
         } as URL[]
-        getLogger().debug(
-                "URLs to scan: " + urls
-        )
-        return new URLClassLoader(urls)
+        urls
     }
 }

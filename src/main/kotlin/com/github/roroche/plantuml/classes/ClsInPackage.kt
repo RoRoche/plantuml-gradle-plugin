@@ -1,7 +1,9 @@
+@file:Suppress("UnstableApiUsage")
+
 package com.github.roroche.plantuml.classes
 
 import com.github.roroche.plantuml.classes.exceptions.InvalidPackageException
-import io.github.classgraph.ClassGraph
+import com.google.common.reflect.ClassPath
 import java.net.URL
 import java.net.URLClassLoader
 
@@ -9,11 +11,11 @@ import java.net.URLClassLoader
  * Utility class to find [Classes] in a given package.
  *
  * @property packageName The name of the package to scan.
- * @property classGraph Utility to find classes in package.
+ * @property classPath Utility to find classes in package.
  */
 class ClsInPackage(
-        private val packageName: String,
-        private val classGraph: ClassGraph
+    private val packageName: String,
+    private val classPath: ClassPath
 ) : Classes {
 
     /**
@@ -23,17 +25,11 @@ class ClsInPackage(
      * @param classLoader The [ClassLoader] to use.
      */
     constructor(
-            packageName: String,
-            classLoader: ClassLoader
+        packageName: String,
+        classLoader: ClassLoader
     ) : this(
-            packageName = packageName,
-            classGraph = ClassGraph(
-            ).whitelistPackages(
-                    packageName
-            ).enableClassInfo(
-            ).overrideClassLoaders(
-                    classLoader
-            )
+        packageName = packageName,
+        classPath = ClassPath.from(classLoader)
     )
 
     /**
@@ -43,11 +39,11 @@ class ClsInPackage(
      * @param urls The [URL] array to use.
      */
     constructor(
-            packageName: String,
-            urls: Array<URL>
+        packageName: String,
+        urls: Array<URL>
     ) : this(
-            packageName = packageName,
-            classLoader = URLClassLoader(urls)
+        packageName = packageName,
+        classLoader = URLClassLoader(urls)
     )
 
     /**
@@ -56,20 +52,22 @@ class ClsInPackage(
      * @param packageName The name of the package to scan.
      */
     constructor(
-            packageName: String
+        packageName: String
     ) : this(
-            packageName = packageName,
-            classLoader = Thread.currentThread().contextClassLoader
+        packageName = packageName,
+        classLoader = Thread.currentThread().contextClassLoader
     )
 
     /**
      * @return Classes to be used for diagram generation.
      */
     override fun list(): List<Class<out Any>> {
-        classGraph.scan().use { scanResult ->
-            return scanResult.allClasses.loadClasses().ifEmpty {
-                throw InvalidPackageException(packageName)
-            }
+        return classPath.getTopLevelClasses(
+            packageName
+        ).map { classInfo ->
+            classInfo.load()
+        }.ifEmpty {
+            throw InvalidPackageException(packageName)
         }
     }
 }

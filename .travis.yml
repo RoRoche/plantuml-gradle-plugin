@@ -3,7 +3,7 @@ os: linux
 dist: trusty
 language: java
 jdk:
-  - openjdk11
+  - openjdk8
 install: true
 
 before_cache:
@@ -26,7 +26,7 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
 
 deploy:
-  cleanup: true
+  cleanup: false
   on:
     tags: true
     condition: "$TRAVIS_SECURE_ENV_VARS"

@@ -28,7 +28,7 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
      */
     @Inject
     BuildClassDiagramTask(final ClassDiagramExtension extension) {
-        this.group = "documentation"
+        this.group = "plantuml"
         this.description = "Build PlantUML class diagram for a given package."
         this.extension = extension
     }
@@ -39,35 +39,44 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
     @TaskAction
     @Override
     void execute() {
-        getLogger().debug(
+        logger.debug(
                 "Package to scan: {}",
                 extension.packageName
         )
-        getLogger().debug(
+        logger.debug(
                 "Output file: {}",
                 extension.outputFile
         )
-        getLogger().debug(
+        logger.debug(
                 "Classes to ignore: {}",
                 extension.ignoredClasses
         )
         final ClassLoader classLoader = getClassLoader()
         final Classes classes = new ClsWithLog(
                 new ClsFiltered(
-                        new ClsInPackage(
-                                extension.packageName,
-                                classLoader
+                        new ClsWithLog(
+                                new ClsInPackage(
+                                        extension.packageName,
+                                        classLoader
+                                ),
+                                "Package content ->",
+                                logger
                         ),
-                        new ClsWithNames(
-                                extension.ignoredClasses,
-                                classLoader
+                        new ClsWithLog(
+                                new ClsWithNames(
+                                        extension.ignoredClasses,
+                                        classLoader
+                                ),
+                                "To ignore ->",
+                                logger
                         )
                 ),
-                getLogger()
+                "To print in class diagram ->",
+                logger
         )
         final Diagram diagram = new DiagramWithLog(
                 new ClassDiagram(classes),
-                getLogger()
+                logger
         )
         diagram.print(extension.outputFile)
     }

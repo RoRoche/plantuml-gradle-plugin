@@ -28,7 +28,7 @@ class BuildClassDiagramTaskTest extends TestsSuite {
                                         new ClassDiagramExtension(
                                                 "com.github.roroche.examples",
                                                 tmpDirPath.resolve("output.txt").toFile(),
-                                                List.of()
+                                                new ArrayList<String>()
                                         )
                                 ),
                                 MockBuildClassDiagramTask.class
@@ -44,7 +44,7 @@ class BuildClassDiagramTaskTest extends TestsSuite {
                                         new ClassDiagramExtension(
                                                 "com.github.roroche.examples",
                                                 tmpDirPath.resolve("output.txt").toFile(),
-                                                List.of()
+                                                new ArrayList<String>()
                                         )
                                 ),
                                 new GrvFileHasContentAssertion(
@@ -74,6 +74,9 @@ class BuildClassDiagramTaskTest extends TestsSuite {
         )
     }
 
+    /**
+     * Tmp dir path.
+     */
     @TempDir
     public static Path tmpDirPath
 }

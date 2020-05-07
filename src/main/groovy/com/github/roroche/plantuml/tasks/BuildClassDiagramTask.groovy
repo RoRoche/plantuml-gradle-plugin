@@ -4,6 +4,10 @@ import com.github.roroche.plantuml.classes.*
 import com.github.roroche.plantuml.diagrams.ClassDiagram
 import com.github.roroche.plantuml.diagrams.Diagram
 import com.github.roroche.plantuml.diagrams.DiagramWithLog
+import com.github.roroche.plantuml.urls.CompileClasspathUrls
+import com.github.roroche.plantuml.urls.LoggableUrls
+import com.github.roroche.plantuml.urls.MainOutputUrls
+import com.github.roroche.plantuml.urls.MergedUrls
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.TaskAction
@@ -17,6 +21,11 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
 
     private ClassDiagramExtension extension
 
+    /**
+     * Injectable constructor.
+     *
+     * @param extension The ClassDiagramExtension to be injected.
+     */
     @Inject
     BuildClassDiagramTask(final ClassDiagramExtension extension) {
         this.group = "documentation"
@@ -65,16 +74,21 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
 
     @Internal
     protected ClassLoader getClassLoader() {
-        final URL[] urls = project.sourceSets.main.output.classesDirs.files.collect {
-            if (it != null) {
-                it.toURI().toURL()
-            }
-        }.findAll {
-            it != null
-        } as URL[]
-        getLogger().debug(
-                "URLs to scan: " + urls
+        return new URLClassLoader(
+                new MergedUrls(
+                        Arrays.asList(
+                                new LoggableUrls(
+                                        new CompileClasspathUrls(project),
+                                        "CompileClasspath",
+                                        logger
+                                ),
+                                new LoggableUrls(
+                                        new MainOutputUrls(project),
+                                        "MainOutput",
+                                        logger
+                                )
+                        )
+                ).toList() as URL[]
         )
-        return new URLClassLoader(urls)
     }
 }

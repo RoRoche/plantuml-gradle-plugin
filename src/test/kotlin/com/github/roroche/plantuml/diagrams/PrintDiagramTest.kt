@@ -44,7 +44,13 @@ class PrintDiagramTest : TestsSuite(
         )
     )
 ) {
+    /**
+     * Companion object to set tmp dir;
+     */
     companion object TmpDir {
+        /**
+         * The tmp dir path.
+         */
         @TempDir
         lateinit var tmpDirPath: Path
     }

@@ -16,7 +16,7 @@ class PlantUmlPluginTest extends TestsSuite {
                         new ProjectWithPluginAssertion(
                                 BuiltProject.instance.toProject(),
                                 "com.github.roroche.plantuml",
-                                List.of(
+                                Arrays.asList(
                                         new FindTaskAssertion(
                                                 BuiltProject.instance.toProject(),
                                                 "buildClassDiagram"

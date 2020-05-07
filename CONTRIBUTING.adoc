@@ -14,7 +14,6 @@ In order to keep branches clear and expressive, please use the following prefixe
 ----
 $ git clone https://github.com/RoRoche/plantuml-gradle-plugin
 $ git fetch
-$ git checkout feature/using_classgraph
 ----
 
 Then in the `build.gradle` file, change the line 18 to set the version you want.

@@ -1,6 +1,6 @@
 = plantuml-gradle-plugin
 
-CAUTION: Stil unstable due to reflection issues.
+CAUTION: Still unstable due to reflection issues.
 
 image::assets/icon.png[Icon]
 

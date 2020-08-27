@@ -23,7 +23,8 @@ class CompileClasspathUrls extends Urls.Wrap {
     CompileClasspathUrls(final Project project) {
         this(
                 new FilesUrls(
-                        project.configurations["compileClasspath"].files
+//                        project.configurations["compileClasspath"].files
+                    [project.android.getBootClasspath()[0]].toSet()
                 )
         )
     }

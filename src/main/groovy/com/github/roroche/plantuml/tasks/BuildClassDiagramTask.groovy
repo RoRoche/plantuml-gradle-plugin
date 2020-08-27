@@ -5,10 +5,12 @@ import com.github.roroche.plantuml.diagrams.ClassDiagram
 import com.github.roroche.plantuml.diagrams.Diagram
 import com.github.roroche.plantuml.diagrams.DiagramWithLog
 import com.github.roroche.plantuml.urls.CompileClasspathUrls
+import com.github.roroche.plantuml.urls.FilesUrls
 import com.github.roroche.plantuml.urls.LoggableUrls
 import com.github.roroche.plantuml.urls.MainOutputUrls
 import com.github.roroche.plantuml.urls.MergedUrls
 import org.gradle.api.DefaultTask
+import org.gradle.api.plugins.JavaPluginConvention
 import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.TaskAction
 
@@ -78,6 +80,7 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
                 new ClassDiagram(classes),
                 logger
         )
+
         diagram.print(extension.outputFile)
     }
 
@@ -86,8 +89,14 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
         return new URLClassLoader(
                 new MergedUrls(
                         Arrays.asList(
-                                new LoggableUrls(
+                               new LoggableUrls(
                                         new CompileClasspathUrls(project),
+                                        "CompileClasspath",
+                                        logger
+                                ),
+                               new LoggableUrls(
+                                        new CompileClasspathUrls(
+                                                new FilesUrls(project.android.libraryVariants[0].javaCompile.classpath.files)),
                                         "CompileClasspath",
                                         logger
                                 ),

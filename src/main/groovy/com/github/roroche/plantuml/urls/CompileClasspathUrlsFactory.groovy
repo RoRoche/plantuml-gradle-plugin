@@ -6,7 +6,7 @@ import org.gradle.api.Project
  * Utility class to build Urls with compileClasspath configuration from Project.
  */
 class CompileClasspathUrlsFactory {
-    public static Urls.Wrap createCompileClasspathUrls(Project project) {
+    static Urls.Wrap createCompileClasspathUrls(Project project) {
         if (isAndroidProject(project)) {
             def classpath = []
 

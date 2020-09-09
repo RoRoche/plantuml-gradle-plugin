@@ -23,14 +23,8 @@ class MainOutputUrls extends Urls.Wrap {
      * @param project The Project where to find output main.
      */
     MainOutputUrls(final Project project) {
-//        this(
-//                project.getConvention().getPlugin(JavaPluginConvention.class).getSourceSets()
-//        )
-        this (
-                new FilesUrls(
-//                    project.fileTree(dir: project.tasks["compileDebugKotlin"].destinationDir, excludes: ["**/META-INF"]).files
-                    [project.tasks["compileDebugKotlin"].destinationDir].toSet()
-                )
+        this(
+                project.getConvention().getPlugin(JavaPluginConvention.class).getSourceSets()
         )
     }
 

@@ -5,9 +5,11 @@ import com.github.roroche.plantuml.diagrams.ClassDiagram
 import com.github.roroche.plantuml.diagrams.Diagram
 import com.github.roroche.plantuml.diagrams.DiagramWithLog
 import com.github.roroche.plantuml.urls.CompileClasspathUrls
+import com.github.roroche.plantuml.urls.CompileClasspathUrlsFactory
 import com.github.roroche.plantuml.urls.FilesUrls
 import com.github.roroche.plantuml.urls.LoggableUrls
 import com.github.roroche.plantuml.urls.MainOutputUrls
+import com.github.roroche.plantuml.urls.MainOutputUrlsFactory
 import com.github.roroche.plantuml.urls.MergedUrls
 import org.gradle.api.DefaultTask
 import org.gradle.api.plugins.JavaPluginConvention
@@ -81,6 +83,11 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
                 logger
         )
 
+        def outputFileParent = extension.outputFile.parentFile
+        if (!outputFileParent.exists()) {
+            outputFileParent.mkdirs()
+        }
+
         diagram.print(extension.outputFile)
     }
 
@@ -90,18 +97,12 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
                 new MergedUrls(
                         Arrays.asList(
                                new LoggableUrls(
-                                        new CompileClasspathUrls(project),
-                                        "CompileClasspath",
-                                        logger
-                                ),
-                               new LoggableUrls(
-                                        new CompileClasspathUrls(
-                                                new FilesUrls(project.android.libraryVariants[0].javaCompile.classpath.files)),
+                                        CompileClasspathUrlsFactory.createCompileClasspathUrls(project),
                                         "CompileClasspath",
                                         logger
                                 ),
                                 new LoggableUrls(
-                                        new MainOutputUrls(project),
+                                        MainOutputUrlsFactory.createMainOutputUrls(project),
                                         "MainOutput",
                                         logger
                                 )

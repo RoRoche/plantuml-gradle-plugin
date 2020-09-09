@@ -21,6 +21,8 @@ if (project.hasProperty('newVersion')) {
 repositories {
     mavenCentral()
     mavenLocal()
+    google()
+    jcenter()
 }
 
 dependencies {
@@ -36,6 +38,7 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.2")
     testImplementation gradleTestKit()
     testImplementation 'org.assertj:assertj-core:3.15.0'
+    testImplementation("com.android.tools.build:gradle:4.0.1")
 }
 
 test {

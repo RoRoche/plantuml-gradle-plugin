@@ -1,10 +1,11 @@
 package com.github.roroche.plantuml.urls
 
 import org.gradle.api.Project
-import org.gradle.api.tasks.SourceSetContainer
+
+import static com.github.roroche.plantuml.android.AndroidProjectType.*
 
 class MainOutputUrlsFactory {
-    public static Urls.Wrap createMainOutputUrls(Project project) {
+    static Urls.Wrap createMainOutputUrls(Project project) {
         if (isAndroidProject(project)) {
             def debugTask = project.tasks.find {
                 it.name.contains("compile") && it.name.contains("DebugKotlin")
@@ -18,17 +19,5 @@ class MainOutputUrlsFactory {
         } else {
             return new MainOutputUrls(project)
         }
-    }
-
-    private static boolean isAndroidProject(Project project) {
-        return isAndroidApplication(project) || isAndroidLibrary(project)
-    }
-
-    private static boolean isAndroidApplication(Project project) {
-        return project.pluginManager.hasPlugin("com.android.application")
-    }
-
-    private static boolean isAndroidLibrary(Project project) {
-        return project.pluginManager.hasPlugin("com.android.library")
     }
 }

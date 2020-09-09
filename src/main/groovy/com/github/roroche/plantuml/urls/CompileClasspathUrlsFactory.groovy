@@ -2,6 +2,8 @@ package com.github.roroche.plantuml.urls
 
 import org.gradle.api.Project
 
+import static com.github.roroche.plantuml.android.AndroidProjectType.*
+
 /**
  * Utility class to build Urls with compileClasspath configuration from Project.
  */
@@ -33,17 +35,4 @@ class CompileClasspathUrlsFactory {
             return new CompileClasspathUrls(project)
         }
     }
-
-    private static boolean isAndroidProject(Project project) {
-        return isAndroidApplication(project) || isAndroidLibrary(project)
-    }
-
-    private static boolean isAndroidApplication(Project project) {
-        return project.pluginManager.hasPlugin("com.android.application")
-    }
-
-    private static boolean isAndroidLibrary(Project project) {
-        return project.pluginManager.hasPlugin("com.android.library")
-    }
-
 }

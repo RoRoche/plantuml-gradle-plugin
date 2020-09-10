@@ -5,7 +5,7 @@ import org.gradle.api.Project
 import static com.github.roroche.plantuml.android.AndroidProjectType.*
 
 /**
- * Utility class to build Urls with compileClasspath configuration from Project.
+ * Factory for creating the correct classpath based on the type of a project
  */
 class CompileClasspathUrlsFactory {
     static Urls.Wrap createCompileClasspathUrls(Project project) {

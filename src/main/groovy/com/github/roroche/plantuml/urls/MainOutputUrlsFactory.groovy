@@ -4,6 +4,9 @@ import org.gradle.api.Project
 
 import static com.github.roroche.plantuml.android.AndroidProjectType.*
 
+/***
+ * Factory for creating the correct output URLs based on the type of a project
+ */
 class MainOutputUrlsFactory {
     static Urls.Wrap createMainOutputUrls(Project project) {
         if (isAndroidProject(project)) {

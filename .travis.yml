@@ -18,6 +18,7 @@ cache:
     - $HOME/.gradle/wrapper/
 
 script:
+  - mkdir -p $ANDROID_HOME
   - ./gradlew -PnewVersion="$TRAVIS_TAG" --version
   - ./gradlew -PnewVersion="$TRAVIS_TAG" clean
   - ./gradlew -PnewVersion="$TRAVIS_TAG" build

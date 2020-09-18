@@ -20,6 +20,7 @@ cache:
 script:
   - mkdir -p $ANDROID_HOME
   - echo "sdk.dir=$ANDROID_HOME" > local.properties
+  - cat local.properties
   - ./gradlew -PnewVersion="$TRAVIS_TAG" --version
   - ./gradlew -PnewVersion="$TRAVIS_TAG" clean
   - ./gradlew -PnewVersion="$TRAVIS_TAG" build

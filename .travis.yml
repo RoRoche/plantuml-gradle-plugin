@@ -19,7 +19,7 @@ cache:
     - $ANDROID_HOME
 
 script:
-  - prepareAndroidHome.sh
+  - ./prepareAndroidHome.sh
   - ./gradlew -PnewVersion="$TRAVIS_TAG" --version
   - ./gradlew -PnewVersion="$TRAVIS_TAG" clean
   - ./gradlew -PnewVersion="$TRAVIS_TAG" build

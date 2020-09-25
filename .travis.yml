@@ -19,10 +19,7 @@ cache:
     - $ANDROID_HOME
 
 script:
-  - mkdir -p $ANDROID_HOME
-  - echo "sdk.dir=$ANDROID_HOME" > local.properties
-  - mkdir $ANDROID_HOME/licenses
-  - echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" > $ANDROID_HOME/licenses/android-sdk-license
+  - prepareAndroidHome.sh
   - ./gradlew -PnewVersion="$TRAVIS_TAG" --version
   - ./gradlew -PnewVersion="$TRAVIS_TAG" clean
   - ./gradlew -PnewVersion="$TRAVIS_TAG" build

@@ -6,6 +6,9 @@ jdk:
   - openjdk8
 install: true
 
+env:
+  - ANDROID_HOME=$HOME/android-sdk
+
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -13,8 +16,11 @@ cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+    - $ANDROID_HOME
 
 script:
+  - ./prepareAndroidHome.sh
+  - ./gradlew -PnewVersion="$TRAVIS_TAG" --version
   - ./gradlew -PnewVersion="$TRAVIS_TAG" clean
   - ./gradlew -PnewVersion="$TRAVIS_TAG" build
   - ./gradlew -PnewVersion="$TRAVIS_TAG" check

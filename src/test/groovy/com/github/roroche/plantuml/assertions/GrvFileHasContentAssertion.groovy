@@ -32,9 +32,9 @@ class GrvFileHasContentAssertion implements Assertion {
     @Override
     void check() throws Exception {
         assertThat(
-                file.text
+                file.text.replace("\r\n", "\n")
         ).isEqualTo(
-                expectedContent
+                expectedContent.replace("\r\n", "\n")
         )
     }
 }

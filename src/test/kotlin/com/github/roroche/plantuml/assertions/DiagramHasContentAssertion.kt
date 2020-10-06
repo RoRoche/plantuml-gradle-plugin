@@ -19,7 +19,7 @@ class DiagramHasContentAssertion(
      */
     override fun check() {
         assertThat(
-            diagram.content()
-        ).isEqualTo(expectedContent)
+            diagram.content().replace("\r\n", "\n")
+        ).isEqualTo(expectedContent.replace("\r\n", "\n"))
     }
 }

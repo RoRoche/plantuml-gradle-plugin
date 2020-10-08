@@ -41,9 +41,9 @@ class KtFileHasContentAssertion(
      */
     override fun check() {
         assertThat(
-            file.readText()
+            file.readText().replace("\r\n", "\n")
         ).isEqualTo(
-            expectedContent
+            expectedContent.replace("\r\n", "\n")
         )
     }
 }

@@ -39,24 +39,31 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
     @TaskAction
     @Override
     void execute() {
+        for (def component : extension.components) {
+            executeConfig(component)
+        }
+    }
+
+    @Internal
+    protected void executeConfig(ClassDiagramExtension.Component component) {
         logger.debug(
                 "Package to scan: {}",
-                extension.packageName
+                component.packageName
         )
         logger.debug(
                 "Output file: {}",
-                extension.outputFile
+                component.outputFile
         )
         logger.debug(
                 "Classes to ignore: {}",
-                extension.ignoredClasses
+                component.ignoredClasses
         )
         final ClassLoader classLoader = getClassLoader()
         final Classes classes = new ClsWithLog(
                 new ClsFiltered(
                         new ClsWithLog(
                                 new ClsInPackage(
-                                        extension.packageName,
+                                        component.packageName,
                                         classLoader
                                 ),
                                 "Package content ->",
@@ -64,7 +71,7 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
                         ),
                         new ClsWithLog(
                                 new ClsWithNames(
-                                        extension.ignoredClasses,
+                                        component.ignoredClasses,
                                         classLoader
                                 ),
                                 "To ignore ->",
@@ -78,7 +85,7 @@ class BuildClassDiagramTask extends DefaultTask implements CustomTask {
                 new ClassDiagram(classes),
                 logger
         )
-        diagram.print(extension.outputFile)
+        diagram.print(component.outputFile)
     }
 
     @Internal

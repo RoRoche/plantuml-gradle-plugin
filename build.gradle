@@ -7,7 +7,7 @@ plugins {
     id "maven-publish"
     id "jacoco"
     id "org.sonarqube" version "2.8"
-    id "com.github.roroche.plantuml" version "1.0.2"
+    id "com.github.roroche.plantuml" version "1.1.0"
     id "org.fmiw.plantuml" version "0.1"
 }
 
@@ -118,15 +118,17 @@ pluginBundle {
 }
 
 classDiagram {
-    packageName = "com.github.roroche"
-    outputFile = project.file('diagrams/class_diagram.plantuml')
-//    ignoredClasses = [
-//            "com.github.roroche.plantuml.diagrams.Diagram\$Simple",
-//            "com.github.roroche.plantuml.diagrams.Diagram\$Wrap",
-//            "com.github.roroche.plantuml.classes.Classes\$Simple",
-//            "com.github.roroche.plantuml.classes.Classes\$Wrap",
-//            "com.github.roroche.plantuml.urls.Urls\$Wrap"
-//    ]
+    component {
+        packageName = "com.github.roroche"
+        outputFile = project.file('diagrams/class_diagram.plantuml')
+//      ignoredClasses = [
+//              "com.github.roroche.plantuml.diagrams.Diagram\$Simple",
+//              "com.github.roroche.plantuml.diagrams.Diagram\$Wrap",
+//              "com.github.roroche.plantuml.classes.Classes\$Simple",
+//              "com.github.roroche.plantuml.classes.Classes\$Wrap",
+//              "com.github.roroche.plantuml.urls.Urls\$Wrap"
+//      ]
+    }
 }
 
 plantuml {

@@ -11,13 +11,15 @@ class "BuildClassDiagramTask" {
 class "ClassDiagram"
 
 class "ClassDiagramExtension" {
-  packageName : String
-  outputFile : File
-  ignoredClasses : List<String>
+  components : List<Component>
   metaClass : MetaClass
+  component(Closure)
   getProperty(String) : Object
   invokeMethod(String, Object) : Object
   setProperty(String, Object)
+  this$dist$get$1(String) : Object
+  this$dist$invoke$1(String, Object) : Object
+  this$dist$set$1(String, Object)
 }
 
 interface "Classes" {
@@ -36,6 +38,7 @@ class "ClsInPackage" {
 }
 
 class "ClsWithLog" {
+  prefix : String
   logger : Logger
   list() : List<Class<?>>
 }
@@ -48,6 +51,19 @@ class "ClsWithNames" {
 
 class "CompileClasspathUrls" {
   super$2$$getStaticMetaClass() : MetaClass
+}
+
+class "Component" {
+  packageName : String
+  outputFile : File
+  ignoredClasses : List<String>
+  metaClass : MetaClass
+  getProperty(String) : Object
+  invokeMethod(String, Object) : Object
+  methodMissing(String, Object) : Object
+  propertyMissing(String) : Object
+  propertyMissing(String, Object)
+  setProperty(String, Object)
 }
 
 interface "CustomTask" {
@@ -98,8 +114,8 @@ class "MergedUrls" {
 
 class "PlantUmlPlugin" {
   metaClass : MetaClass
-  apply(Project)
   apply(Object)
+  apply(Project)
   getProperty(String) : Object
   invokeMethod(String, Object) : Object
   setProperty(String, Object)
@@ -125,6 +141,7 @@ class "_toList_closure1" {
 }
 
 "BuildClassDiagramTask" --> "ClassDiagramExtension" : extension
+"ClassDiagramExtension" --> "*" "Component" : components
 "Classes" <-> "ClsFiltered" : /ignored
 "Classes" <|-- "ClsInPackage"
 "Classes" <|-- "ClsWithLog"

@@ -4,9 +4,8 @@ package com.github.roroche.plantuml.tasks
  * Extension for task {@link BuildClassDiagramTask}.
  */
 class ClassDiagramExtension {
-    private String packageName
-    private File outputFile
-    private List<String> ignoredClasses
+
+    List<Component> components = new ArrayList<>()
 
     /**
      * Default constructor.
@@ -25,9 +24,7 @@ class ClassDiagramExtension {
             final File outputFile,
             final List<String> ignoredClasses
     ) {
-        this.packageName = packageName
-        this.outputFile = outputFile
-        this.ignoredClasses = ignoredClasses
+        components.add(new Component(packageName, outputFile, ignoredClasses))
     }
 
     /**
@@ -37,38 +34,66 @@ class ClassDiagramExtension {
         return packageName
     }
 
+    private Component getOrCreateComponent() {
+        if (components.isEmpty()) {
+            components.add(new Component())
+        }
+        return components.get(components.size()-1);
+    }
+
     /**
      * @param packageName The name of the package to scan.
      */
     void setPackageName(final String packageName) {
-        this.packageName = packageName
-    }
-
-    /**
-     * @return The file where to print diagram.
-     */
-    File getOutputFile() {
-        return outputFile
+        getOrCreateComponent().packageName = packageName;
     }
 
     /**
      * @param outputFile The file where to print diagram.
      */
     void setOutputFile(final File outputFile) {
-        this.outputFile = outputFile
-    }
-
-    /**
-     * @return The classes to ignore while generating diagram.
-     */
-    List<String> getIgnoredClasses() {
-        return ignoredClasses
+        getOrCreateComponent().outputFile = outputFile;
     }
 
     /**
      * @param ignoredClasses The classes to ignore while generating diagram.
      */
     void setIgnoredClasses(final List<String> ignoredClasses) {
-        this.ignoredClasses = ignoredClasses
+        getOrCreateComponent().ignoredClasses = ignoredClasses;
     }
+
+    void component(Closure callback) {
+        components.add(new Component())
+        callback()
+    }
+
+    static class Component {
+
+        String packageName
+        File outputFile
+        List<String> ignoredClasses
+
+        /**
+         * Default constructor.
+         */
+        Component() {
+        }
+
+        /**
+         * Primary constructor
+         * @param packageName The name of the package to scan.
+         * @param outputFile The file where to print diagram.
+         * @param ignoredClasses The classes to ignore while generating diagram.
+         */
+        Component(
+                final String packageName,
+                final File outputFile,
+                final List<String> ignoredClasses
+        ) {
+            this.packageName = packageName
+            this.outputFile = outputFile
+            this.ignoredClasses = ignoredClasses
+        }
+    }
+
 }

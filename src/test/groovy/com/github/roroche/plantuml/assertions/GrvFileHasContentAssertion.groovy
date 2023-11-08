@@ -43,7 +43,7 @@ class GrvFileHasContentAssertion implements Assertion {
         )
     }
 
-    private static LinkedHashMap<String, LinkedHashMap<String, String>> parseToMap(String input) {
+    private static Map<String, Map<String, String>> parseToMap(String input) {
         // Regex pattern to match class names and their properties
         def pattern = /class\s+"(.*?)".*?\{(.*?)\}/
 

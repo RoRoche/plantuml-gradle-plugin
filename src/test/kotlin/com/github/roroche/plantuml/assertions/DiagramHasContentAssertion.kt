@@ -27,7 +27,7 @@ class DiagramHasContentAssertion(
         )
     }
 
-    private fun parseToMap(input: String): LinkedHashMap<String, LinkedHashMap<String, String>> {
+    private fun parseToMap(input: String): Map<String, Map<String, String>> {
         // Regex pattern to match class names and their properties
         val pattern = """class\s+"(.*?)".*?\{(.*?)\}""".toRegex(RegexOption.DOT_MATCHES_ALL)
         val resultMap: LinkedHashMap<String, LinkedHashMap<String, String>> = linkedMapOf()

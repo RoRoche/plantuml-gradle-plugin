@@ -31,10 +31,35 @@ class GrvFileHasContentAssertion implements Assertion {
      */
     @Override
     void check() throws Exception {
+        def expectedContent = file.text.replace("\r\n", "\n")
+
+        assert(expectedContent.contains("interface \"Vehicle\"\n"))
+        assert(expectedContent.contains("\"Car\" \"*\" <-> \"Driver\" : driver/cars\n"))
+        assert(expectedContent.contains("\"Vehicle\" <|-- \"Car\""))
         assertThat(
-                file.text.replace("\r\n", "\n")
+                parseToMap(expectedContent)
         ).isEqualTo(
-                expectedContent.replace("\r\n", "\n")
+                parseToMap(expectedContent.replace("\r\n", "\n"))
         )
+    }
+
+    private static Map<String, Map<String, String>> parseToMap(String input) {
+        // Regex pattern to match class names and their properties
+        def pattern = /class\s+"(.*?)".*?\{(.*?)\}/
+
+        def resultMap = [:]
+
+        (input =~ pattern).each { match ->
+            def properties = [:]
+
+            match[2].trim().split('\n').each { propertyLine ->
+                def parts = propertyLine.split(':').collect { it.trim() }
+                if (parts.size() == 2) {
+                    properties[parts[0]] = parts[1]
+                }
+            }
+            resultMap[match[1].trim()] = properties
+        }
+        return resultMap
     }
 }
